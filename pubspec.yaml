@@ -45,6 +45,8 @@ dependencies:
   get_it: ^9.2.0
   injectable: ^2.7.1+4
   dio: ^5.9.0
+  flutter_bloc: ^9.1.1
+  pretty_dio_logger: ^1.4.0
 
 dev_dependencies:
   flutter_test:

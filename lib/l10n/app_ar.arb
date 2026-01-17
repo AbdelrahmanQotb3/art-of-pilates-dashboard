@@ -61,5 +61,13 @@
     "lastNameRequired": "اسم العائلة مطلوب",
     "@lastNameRequired": {},
     "rememberMe": "تذكرني",
-    "@rememberMe": {}
+    "@rememberMe": {},
+    "phoneNumber": "رقم الهاتف",
+    "@phoneNumber": {},
+    "enterYourPhoneNumber": "أدخل رقم هاتفك",
+    "@enterYourPhoneNumber": {},
+    "role": "الدور",
+    "@role": {},
+    "enterYourRole": "أدخل دورك",
+    "@enterYourRole": {}
 }

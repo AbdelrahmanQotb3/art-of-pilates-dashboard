@@ -103,4 +103,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get rememberMe => 'Remember me';
+
+  @override
+  String get phoneNumber => 'Phone number';
+
+  @override
+  String get enterYourPhoneNumber => 'Enter your phone number';
+
+  @override
+  String get role => 'Role';
+
+  @override
+  String get enterYourRole => 'Enter your role';
 }

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pilates_dashboard/app/config/di/di.dart';
 import 'package:pilates_dashboard/app/core/routes/pages.dart';
 import 'package:pilates_dashboard/app/core/routes/routes.dart';
 import 'package:pilates_dashboard/l10n/app_localizations.dart';
 
 void main() {
+  configureDependencies();
   runApp(App());
 }
 
@@ -21,7 +23,7 @@ class App extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
-        initialRoute: Routes.loginScreen,
+        initialRoute: Routes.signinScreen,
         onGenerateRoute: RouteGenerator.generateRoute,
         home: child,
       ),

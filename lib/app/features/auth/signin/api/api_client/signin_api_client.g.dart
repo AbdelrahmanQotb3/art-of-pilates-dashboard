@@ -23,7 +23,7 @@ class _SigninApiClient implements SigninApiClient {
         Options(method: 'POST', headers: _headers, extra: _extra)
             .compose(
               _dio.options,
-              '/signin',
+              'auth/signin',
               queryParameters: queryParameters,
               data: _data,
             )

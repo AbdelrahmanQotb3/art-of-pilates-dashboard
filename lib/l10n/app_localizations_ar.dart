@@ -105,4 +105,16 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get rememberMe => 'تذكرني';
+
+  @override
+  String get phoneNumber => 'رقم الهاتف';
+
+  @override
+  String get enterYourPhoneNumber => 'أدخل رقم هاتفك';
+
+  @override
+  String get role => 'الدور';
+
+  @override
+  String get enterYourRole => 'أدخل دورك';
 }

@@ -10,8 +10,7 @@ part 'signin_api_client.g.dart';
 @injectable
 abstract class SigninApiClient {
   @factoryMethod
-  factory SigninApiClient(Dio dio, {@Query("baseUrl") String? baseUrl}) =
-      _SigninApiClient;
+  factory SigninApiClient(Dio dio) = _SigninApiClient;
 
   @POST(EndPoints.signin)
   Future<SigninResponse> signin(@Body() Map<String, dynamic> body);

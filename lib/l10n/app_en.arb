@@ -61,5 +61,13 @@
     "lastNameRequired": "Last name is required",
     "@lastNameRequired": {},
     "rememberMe": "Remember me",
-    "@rememberMe": {}
+    "@rememberMe": {},
+    "phoneNumber": "Phone number",
+    "@phoneNumber": {},
+    "enterYourPhoneNumber": "Enter your phone number",
+    "@enterYourPhoneNumber": {},
+    "role": "Role",
+    "@role": {},
+    "enterYourRole": "Enter your role",
+    "@enterYourRole": {}
 }

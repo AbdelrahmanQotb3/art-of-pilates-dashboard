@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pilates_dashboard/app/config/di/di.dart';
+import 'package:pilates_dashboard/app/core/colors/app_colors.dart';
 import 'package:pilates_dashboard/app/core/routes/routes.dart';
 import 'package:pilates_dashboard/app/core/theme/app_theme.dart';
 import 'package:pilates_dashboard/app/core/utils/app_validation.dart';
@@ -20,7 +20,7 @@ class SigninScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F5F5), // Light grey background
+      backgroundColor: AppColors.secondaryColor,
       body: _buildBody(context),
     );
   }
@@ -30,7 +30,6 @@ class SigninScreen extends StatelessWidget {
       create: (context) => viewModel,
       child: BlocConsumer<SigninViewModel, SigninStates>(
         listener: (context, state) {
-          // Fix for Web Scheduler Library Exception
           WidgetsBinding.instance.addPostFrameCallback((_) {
             if (state.signinState?.isLoading == true) {
               _showLoadingDialog(context);
@@ -50,9 +49,7 @@ class SigninScreen extends StatelessWidget {
             child: SingleChildScrollView(
               padding: EdgeInsets.symmetric(vertical: 40),
               child: ConstrainedBox(
-                constraints: BoxConstraints(
-                  maxWidth: 600,
-                ), // Slightly narrower for login
+                constraints: BoxConstraints(maxWidth: 600),
                 child: Container(
                   margin: EdgeInsets.symmetric(horizontal: 20),
                   padding: EdgeInsets.all(40),
@@ -61,6 +58,7 @@ class SigninScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                     boxShadow: [
                       BoxShadow(
+                        // ignore: deprecated_member_use
                         color: Colors.black.withOpacity(0.05),
                         blurRadius: 20,
                         offset: const Offset(0, 10),
@@ -82,7 +80,6 @@ class SigninScreen extends StatelessWidget {
                         ),
                         SizedBox(height: 30),
 
-                        // --- Email Field ---
                         AppTextField(
                           label: AppLocalizations.of(context)!.email,
                           hint: AppLocalizations.of(context)!.enterYourEmail,
@@ -92,7 +89,6 @@ class SigninScreen extends StatelessWidget {
                         ),
                         SizedBox(height: 16),
 
-                        // --- Password Field ---
                         AppTextField(
                           label: AppLocalizations.of(context)!.password,
                           hint: AppLocalizations.of(context)!.enterYourPassword,
@@ -103,7 +99,6 @@ class SigninScreen extends StatelessWidget {
                         ),
                         SizedBox(height: 12),
 
-                        // --- Remember Me & Forgot Password ---
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -139,7 +134,6 @@ class SigninScreen extends StatelessWidget {
                         ),
                         SizedBox(height: 30),
 
-                        // --- Login Button ---
                         SizedBox(
                           width: double.infinity,
                           height: 55,
@@ -172,8 +166,6 @@ class SigninScreen extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: 24),
-
-                        // --- Signup Link ---
                         Center(
                           child: Wrap(
                             alignment: WrapAlignment.center,

@@ -12,6 +12,7 @@ class AppTextField extends StatefulWidget {
   final void Function(String)? onChanged;
   final TextInputAction? textInputAction;
   final void Function(String)? onSubmitted;
+  final Color? backGroundColor;
 
   const AppTextField({
     super.key,
@@ -24,6 +25,7 @@ class AppTextField extends StatefulWidget {
     this.onChanged,
     this.textInputAction,
     this.onSubmitted,
+    this.backGroundColor,
   });
 
   @override
@@ -60,6 +62,10 @@ class _AppTextFieldState extends State<AppTextField> {
           horizontal: 16,
           vertical: 22,
         ),
+        filled: true,
+        fillColor: widget.backGroundColor ?? Colors.white,
+        // ignore: deprecated_member_use
+        hoverColor: (widget.backGroundColor ?? Colors.white).withOpacity(0.8),
         labelText: widget.label,
         hintText: widget.hint,
         labelStyle: const TextStyle(fontSize: 16, color: AppColors.blackColor),

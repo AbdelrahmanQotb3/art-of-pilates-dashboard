@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pilates_dashboard/app/config/di/di.dart';
+import 'package:pilates_dashboard/app/core/colors/app_colors.dart';
 import 'package:pilates_dashboard/app/core/routes/routes.dart';
 import 'package:pilates_dashboard/app/core/theme/app_theme.dart';
 import 'package:pilates_dashboard/app/core/utils/app_validation.dart';
@@ -18,7 +19,7 @@ class SignupScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F5F5), // Light background for Web
+      backgroundColor: AppColors.secondaryColor,
       body: _buildBody(context),
     );
   }
@@ -28,19 +29,14 @@ class SignupScreen extends StatelessWidget {
       create: (context) => viewModel,
       child: BlocConsumer<SignupViewModel, SignupStates>(
         listener: (context, state) {
-          // Fixes the "EXCEPTION CAUGHT BY SCHEDULER LIBRARY" on Web
           WidgetsBinding.instance.addPostFrameCallback((_) {
             if (state.signupState?.isLoading == true) {
               _showLoadingDialog(context);
             } else if (state.signupState?.data != null) {
-              // Close loading dialog if open
               if (Navigator.of(context).canPop()) Navigator.of(context).pop();
-
               Navigator.pushReplacementNamed(context, Routes.signinScreen);
             } else if (state.signupState?.errorMessage != null) {
-              // Close loading dialog if open
               if (Navigator.of(context).canPop()) Navigator.of(context).pop();
-
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text(state.signupState!.errorMessage!)),
               );
@@ -61,6 +57,7 @@ class SignupScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                     boxShadow: [
                       BoxShadow(
+                        // ignore: deprecated_member_use
                         color: Colors.black.withOpacity(0.05),
                         blurRadius: 15,
                         offset: const Offset(0, 5),
@@ -83,7 +80,6 @@ class SignupScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 30),
 
-                        // First Name & Last Name Row
                         Row(
                           children: [
                             Expanded(
@@ -112,8 +108,6 @@ class SignupScreen extends StatelessWidget {
                           ],
                         ),
                         const SizedBox(height: 16),
-
-                        // Email Field
                         AppTextField(
                           controller: viewModel.emailController,
                           label: AppLocalizations.of(context)!.email,
@@ -123,7 +117,6 @@ class SignupScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 16),
 
-                        // Password Fields Row
                         Row(
                           children: [
                             Expanded(
@@ -160,8 +153,6 @@ class SignupScreen extends StatelessWidget {
                           ],
                         ),
                         const SizedBox(height: 16),
-
-                        // Phone & Role Row
                         Row(
                           children: [
                             Expanded(
@@ -193,8 +184,6 @@ class SignupScreen extends StatelessWidget {
                           ],
                         ),
                         const SizedBox(height: 40),
-
-                        // Signup Button
                         SizedBox(
                           width: double.infinity,
                           height: 55,
@@ -230,8 +219,6 @@ class SignupScreen extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 20),
-
-                        // Footer
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [

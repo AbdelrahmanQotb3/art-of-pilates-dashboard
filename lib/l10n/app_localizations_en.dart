@@ -115,4 +115,37 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get enterYourRole => 'Enter your role';
+
+  @override
+  String get artOfPilates => 'Art of Pilates';
+
+  @override
+  String get search => 'Search';
+
+  @override
+  String get classes => 'Classes';
+
+  @override
+  String get sessions => 'Sessions';
+
+  @override
+  String get subscriptions => 'Subscriptions';
+
+  @override
+  String get services => 'Services';
+
+  @override
+  String get pricingPlans => 'Pricing Plans';
+
+  @override
+  String get discounts => 'Discounts';
+
+  @override
+  String get invoices => 'Invoices';
+
+  @override
+  String get contacts => 'Contacts';
+
+  @override
+  String get staff => 'Staff';
 }

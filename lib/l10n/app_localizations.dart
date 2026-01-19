@@ -307,6 +307,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Enter your role'**
   String get enterYourRole;
+
+  /// No description provided for @artOfPilates.
+  ///
+  /// In en, this message translates to:
+  /// **'Art of Pilates'**
+  String get artOfPilates;
+
+  /// No description provided for @search.
+  ///
+  /// In en, this message translates to:
+  /// **'Search'**
+  String get search;
+
+  /// No description provided for @classes.
+  ///
+  /// In en, this message translates to:
+  /// **'Classes'**
+  String get classes;
+
+  /// No description provided for @sessions.
+  ///
+  /// In en, this message translates to:
+  /// **'Sessions'**
+  String get sessions;
+
+  /// No description provided for @subscriptions.
+  ///
+  /// In en, this message translates to:
+  /// **'Subscriptions'**
+  String get subscriptions;
+
+  /// No description provided for @services.
+  ///
+  /// In en, this message translates to:
+  /// **'Services'**
+  String get services;
+
+  /// No description provided for @pricingPlans.
+  ///
+  /// In en, this message translates to:
+  /// **'Pricing Plans'**
+  String get pricingPlans;
+
+  /// No description provided for @discounts.
+  ///
+  /// In en, this message translates to:
+  /// **'Discounts'**
+  String get discounts;
+
+  /// No description provided for @invoices.
+  ///
+  /// In en, this message translates to:
+  /// **'Invoices'**
+  String get invoices;
+
+  /// No description provided for @contacts.
+  ///
+  /// In en, this message translates to:
+  /// **'Contacts'**
+  String get contacts;
+
+  /// No description provided for @staff.
+  ///
+  /// In en, this message translates to:
+  /// **'Staff'**
+  String get staff;
 }
 
 class _AppLocalizationsDelegate

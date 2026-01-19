@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pilates_dashboard/app/core/routes/routes.dart';
 import 'package:pilates_dashboard/app/features/auth/signin/presentation/views/signin_screen.dart';
 import 'package:pilates_dashboard/app/features/auth/signup/presentation/views/signup_screen.dart';
-import 'package:pilates_dashboard/app/features/home/presentation/view/home_screen.dart';
+import 'package:pilates_dashboard/app/features/home/presentation/views/home_screen.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -12,7 +12,7 @@ class RouteGenerator {
       case Routes.signupScreen:
         return MaterialPageRoute(builder: (_) => SignupScreen());
       case Routes.homeScreen:
-        return MaterialPageRoute(builder: (_) => const HomeScreen());
+        return MaterialPageRoute(builder: (_) => HomeScreen());
       default:
         return unDefinedRoute();
     }

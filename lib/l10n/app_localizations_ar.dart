@@ -117,4 +117,37 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get enterYourRole => 'أدخل دورك';
+
+  @override
+  String get artOfPilates => 'Art Of Pilates';
+
+  @override
+  String get search => 'ابحث';
+
+  @override
+  String get classes => 'الصفوف التدريبية';
+
+  @override
+  String get sessions => 'الجلسات';
+
+  @override
+  String get subscriptions => 'الاشتراكات';
+
+  @override
+  String get services => 'الخدمات';
+
+  @override
+  String get pricingPlans => 'خطط الأسعار';
+
+  @override
+  String get discounts => 'الخصومات';
+
+  @override
+  String get invoices => 'الفواتير';
+
+  @override
+  String get contacts => 'بيانات الاتصال';
+
+  @override
+  String get staff => 'فريق العمل';
 }

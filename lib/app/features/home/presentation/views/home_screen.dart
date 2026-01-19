@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:pilates_dashboard/app/core/colors/app_colors.dart';
-import 'package:pilates_dashboard/app/features/home/presentation/views/tabs/classes_tab.dart';
-import 'package:pilates_dashboard/app/features/home/presentation/views/tabs/contacts_tab.dart';
-import 'package:pilates_dashboard/app/features/home/presentation/views/tabs/discounts_tab.dart';
-import 'package:pilates_dashboard/app/features/home/presentation/views/tabs/invoices_tab.dart';
-import 'package:pilates_dashboard/app/features/home/presentation/views/tabs/pricing_plans_tab.dart';
-import 'package:pilates_dashboard/app/features/home/presentation/views/tabs/services_tab.dart';
-import 'package:pilates_dashboard/app/features/home/presentation/views/tabs/sessions_tab.dart';
-import 'package:pilates_dashboard/app/features/home/presentation/views/tabs/staff_tab.dart';
-import 'package:pilates_dashboard/app/features/home/presentation/views/tabs/subscriptions_tab.dart';
+import 'package:pilates_dashboard/app/features/tabs/classes_tab.dart';
+import 'package:pilates_dashboard/app/features/tabs/contacts_tab.dart';
+import 'package:pilates_dashboard/app/features/tabs/discounts_tab.dart';
+import 'package:pilates_dashboard/app/features/tabs/invoices_tab.dart';
+import 'package:pilates_dashboard/app/features/tabs/pricing_plans_tab.dart';
+import 'package:pilates_dashboard/app/features/tabs/services_tab.dart';
+import 'package:pilates_dashboard/app/features/tabs/sessions_tab.dart';
+import 'package:pilates_dashboard/app/features/tabs/staff_tab.dart';
+import 'package:pilates_dashboard/app/features/tabs/subscriptions_tab.dart';
 import 'package:pilates_dashboard/app/reusable_widgets/app_text_field.dart';
 import 'package:pilates_dashboard/l10n/app_localizations.dart';
 

@@ -91,5 +91,15 @@
     "contacts": "Contacts",
     "@contacts": {},
     "staff": "Staff",
-    "@staff": {}
+    "@staff": {},
+    "address": "Address",
+    "@address": {},
+    "loading" : "Loading",
+    "@loading" :{},
+    "contactDetails" : "Contact Details",
+    "@contactDetails" : {},
+    "edit" : "Edit",
+    "@edit" : {},
+    "delete" : "Delete",
+    "@delete" : {}
 }

@@ -150,4 +150,19 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get staff => 'فريق العمل';
+
+  @override
+  String get address => 'العنوان';
+
+  @override
+  String get loading => 'جاري التحميل';
+
+  @override
+  String get contactDetails => 'تفاصيل جهة الاتصال';
+
+  @override
+  String get edit => 'تعديل';
+
+  @override
+  String get delete => 'حذف';
 }

@@ -148,4 +148,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get staff => 'Staff';
+
+  @override
+  String get address => 'Address';
+
+  @override
+  String get loading => 'Loading';
+
+  @override
+  String get contactDetails => 'Contact Details';
+
+  @override
+  String get edit => 'Edit';
+
+  @override
+  String get delete => 'Delete';
 }

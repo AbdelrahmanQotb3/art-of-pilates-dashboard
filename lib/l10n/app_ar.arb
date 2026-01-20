@@ -91,5 +91,15 @@
     "contacts": "بيانات الاتصال",
     "@contacts": {},
     "staff": "فريق العمل",
-    "@staff": {}
+    "@staff": {},
+    "address" : "العنوان",
+    "@address" : {},
+    "loading": "جاري التحميل",
+    "@loading": {},
+    "contactDetails": "تفاصيل جهة الاتصال",
+    "@contactDetails": {},
+    "edit" : "تعديل",
+    "@edit" : {},
+    "delete" : "حذف",
+    "@delete" : {}
 }

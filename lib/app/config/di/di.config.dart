@@ -40,7 +40,22 @@ import '../../features/auth/signup/domain/use_cases/signup_usecase.dart'
     as _i469;
 import '../../features/auth/signup/presentation/view_model/signup_view_model.dart'
     as _i733;
-import '../dio_module/di_auth_model.dart' as _i229;
+import '../../features/contacts_tab/api/api_client/contacts_api_client.dart'
+    as _i416;
+import '../../features/contacts_tab/api/data_source_impl/contacts_data_source_impl.dart'
+    as _i931;
+import '../../features/contacts_tab/data/data_source/contacts_data_source_contract.dart'
+    as _i709;
+import '../../features/contacts_tab/data/repo/contacts_repo_impl.dart' as _i188;
+import '../../features/contacts_tab/domain/repo/contacts_repo_contract.dart'
+    as _i750;
+import '../../features/contacts_tab/domain/use_cases/contacts_use_case.dart'
+    as _i391;
+import '../../features/contacts_tab/presntation/view_models/contact_details_view_model.dart'
+    as _i49;
+import '../../features/contacts_tab/presntation/view_models/contacts_view_model.dart'
+    as _i807;
+import '../dio_module/di_model.dart' as _i183;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -58,8 +73,17 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i557.SignupApiClient>(
       () => _i557.SignupApiClient(gh<_i361.Dio>()),
     );
+    gh.factory<_i416.ContactsApiClient>(
+      () => _i416.ContactsApiClient(gh<_i361.Dio>()),
+    );
+    gh.factory<_i709.ContactsDataSourceContract>(
+      () => _i931.ContactsDataSourceImpl(gh<_i416.ContactsApiClient>()),
+    );
     gh.factory<_i519.SigninDataSourceContract>(
       () => _i682.SigninDataSourceImpl(gh<_i297.SigninApiClient>()),
+    );
+    gh.factory<_i750.ContactsRepoContract>(
+      () => _i188.ContactsRepoImpl(gh<_i709.ContactsDataSourceContract>()),
     );
     gh.factory<_i573.SignupDataSourceContract>(
       () => _i119.SignupDataSourceImpl(gh<_i557.SignupApiClient>()),
@@ -79,6 +103,15 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i66.SigninViewModel>(
       () => _i66.SigninViewModel(gh<_i620.SigninUseCase>()),
     );
+    gh.factory<_i391.ContactsUseCase>(
+      () => _i391.ContactsUseCase(gh<_i750.ContactsRepoContract>()),
+    );
+    gh.factory<_i49.ContactDetailsViewModel>(
+      () => _i49.ContactDetailsViewModel(gh<_i391.ContactsUseCase>()),
+    );
+    gh.factory<_i807.ContactsViewModel>(
+      () => _i807.ContactsViewModel(gh<_i391.ContactsUseCase>()),
+    );
     gh.factory<_i733.SignupViewModel>(
       () => _i733.SignupViewModel(gh<_i469.SignupUseCase>()),
     );
@@ -86,4 +119,4 @@ extension GetItInjectableX on _i174.GetIt {
   }
 }
 
-class _$DioModule extends _i229.DioModule {}
+class _$DioModule extends _i183.DioModule {}

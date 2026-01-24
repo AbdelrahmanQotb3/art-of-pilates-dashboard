@@ -8,6 +8,7 @@ import 'package:pilates_dashboard/app/core/utils/app_validation.dart';
 import 'package:pilates_dashboard/app/features/auth/signup/presentation/view_model/signup_states.dart';
 import 'package:pilates_dashboard/app/features/auth/signup/presentation/view_model/signup_view_model.dart';
 import 'package:pilates_dashboard/app/reusable_widgets/app_text_field.dart';
+import 'package:pilates_dashboard/app/reusable_widgets/loading_dialog.dart';
 import 'package:pilates_dashboard/l10n/app_localizations.dart';
 
 class SignupScreen extends StatelessWidget {
@@ -31,7 +32,7 @@ class SignupScreen extends StatelessWidget {
         listener: (context, state) {
           WidgetsBinding.instance.addPostFrameCallback((_) {
             if (state.signupState?.isLoading == true) {
-              _showLoadingDialog(context);
+              LoadingDialog(message: AppLocalizations.of(context)!.signup);
             } else if (state.signupState?.data != null) {
               if (Navigator.of(context).canPop()) Navigator.of(context).pop();
               Navigator.pushReplacementNamed(context, Routes.signinScreen);
@@ -247,27 +248,6 @@ class SignupScreen extends StatelessWidget {
             ),
           );
         },
-      ),
-    );
-  }
-
-  void _showLoadingDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => Dialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        child: const Padding(
-          padding: EdgeInsets.all(24.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              CircularProgressIndicator(),
-              SizedBox(height: 16),
-              Text('Signing up...'),
-            ],
-          ),
-        ),
       ),
     );
   }

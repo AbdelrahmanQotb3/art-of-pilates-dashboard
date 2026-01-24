@@ -3,4 +3,10 @@ class EndPoints {
 
   static const String signin = "auth/signin";
   static const String signup = "auth/signup";
+
+  static const String getContacts = "contacts/getContacts";
+  static const String getContact = "contacts/getContact";
+  static const String deleteContact = "contacts/deleteContact";
+  static const String updateContact = "contacts/updateContact/{id}";
+  static const String createContact = "contacts/createContact";
 }

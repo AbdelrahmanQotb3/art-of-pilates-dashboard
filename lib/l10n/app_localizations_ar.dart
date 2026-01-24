@@ -150,4 +150,43 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get staff => 'فريق العمل';
+
+  @override
+  String get address => 'العنوان';
+
+  @override
+  String get loading => 'جاري التحميل';
+
+  @override
+  String get contactDetails => 'تفاصيل جهة الاتصال';
+
+  @override
+  String get edit => 'تعديل';
+
+  @override
+  String get delete => 'حذف';
+
+  @override
+  String get city => 'المدينة';
+
+  @override
+  String get country => 'البلد';
+
+  @override
+  String get cancle => 'اغلاق';
+
+  @override
+  String get ok => 'موافق';
+
+  @override
+  String get addContact => 'اضافة جهة الاتصال';
+
+  @override
+  String get addContactSuccess => 'تم اضافة جهة الاتصال بنجاح';
+
+  @override
+  String get addContactFail => 'Failed to add contact';
+
+  @override
+  String get error => 'خطأ';
 }

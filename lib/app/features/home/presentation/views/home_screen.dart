@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pilates_dashboard/app/core/colors/app_colors.dart';
 import 'package:pilates_dashboard/app/features/tabs/classes_tab.dart';
-import 'package:pilates_dashboard/app/features/tabs/contacts_tab.dart';
+import 'package:pilates_dashboard/app/features/contacts_tab/presntation/views/contacts_tab.dart';
 import 'package:pilates_dashboard/app/features/tabs/discounts_tab.dart';
 import 'package:pilates_dashboard/app/features/tabs/invoices_tab.dart';
 import 'package:pilates_dashboard/app/features/tabs/pricing_plans_tab.dart';
@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
     const PricingPlansTab(),
     const DiscountsTab(),
     const InvoicesTab(),
-    const ContactsTab(),
+    ContactsTab(),
     const StaffTab(),
   ];
 

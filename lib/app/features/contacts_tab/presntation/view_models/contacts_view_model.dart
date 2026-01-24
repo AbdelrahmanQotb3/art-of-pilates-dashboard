@@ -7,10 +7,16 @@ import 'package:pilates_dashboard/app/features/contacts_tab/domain/model/contact
 import 'package:pilates_dashboard/app/features/contacts_tab/domain/use_cases/contacts_use_case.dart';
 import 'package:pilates_dashboard/app/features/contacts_tab/presntation/view_models/contacts_states.dart';
 
-@injectable
+@lazySingleton
 class ContactsViewModel extends Cubit<ContactsStates> {
   final ContactsUseCase _contactsUseCase;
   TextEditingController searchController = TextEditingController();
+  TextEditingController firstNameController = TextEditingController();
+  TextEditingController lastNameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController phoneNumberController = TextEditingController();
+  TextEditingController cityController = TextEditingController();
+  TextEditingController countryController = TextEditingController();
   int? contactId;
   ContactsViewModel(this._contactsUseCase) : super(ContactsStates());
 
@@ -48,35 +54,58 @@ class ContactsViewModel extends Cubit<ContactsStates> {
     return response;
   }
 
-  Future<BaseResponse<ContactEntity>> getContact(int id) async {
+  Future<bool> createContact(
+    String? firstName,
+    String? lastName,
+    String? email,
+    String? phoneNumber,
+    String? addressCity,
+    String? addressCountry,
+  ) async {
     emit(
       state.copyWith(
-        contactStateParam: BaseState<ContactEntity>(isLoading: true),
+        createContactStateParam: BaseState<ContactEntity>(isLoading: true),
       ),
     );
-    BaseResponse<ContactEntity> response = await _contactsUseCase.getContact(
-      id,
+    final response = await _contactsUseCase.createContact(
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      addressCity,
+      addressCountry,
     );
     switch (response) {
       case SuccessResponse<ContactEntity>():
         emit(
           state.copyWith(
-            contactStateParam: BaseState<ContactEntity>(
+            createContactStateParam: BaseState<ContactEntity>(
               data: response.data,
               isLoading: false,
             ),
           ),
         );
+        return true;
       case ErrorResponse<ContactEntity>():
         emit(
           state.copyWith(
-            contactStateParam: BaseState<ContactEntity>(
+            createContactStateParam: BaseState<ContactEntity>(
               errorMessage: response.error.toString(),
               isLoading: false,
             ),
           ),
         );
+        return false;
     }
-    return response;
+  }
+
+  void reset() {
+    firstNameController.clear();
+    lastNameController.clear();
+    emailController.clear();
+    phoneNumberController.clear();
+    cityController.clear();
+    countryController.clear();
+    contactId = null;
   }
 }

@@ -5,28 +5,40 @@ import 'package:pilates_dashboard/app/core/colors/app_colors.dart';
 import 'package:pilates_dashboard/app/core/utils/app_locale.dart';
 import 'package:pilates_dashboard/app/features/contacts_tab/presntation/view_models/contact_details_view_model.dart';
 import 'package:pilates_dashboard/app/features/contacts_tab/presntation/view_models/contacts_states.dart';
+import 'package:pilates_dashboard/app/reusable_widgets/app_text_field.dart';
 
 class ContactDetails extends StatelessWidget {
+  final viewModel = getIt<ContactDetailsViewModel>();
   final int? contactId;
-  final ContactDetailsViewModel viewModel = getIt<ContactDetailsViewModel>();
 
   ContactDetails({super.key, this.contactId});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.secondaryColor,
-      appBar: _buildAppBar(context),
-      body: BlocProvider(
-        create: (context) {
+    return BlocProvider<ContactDetailsViewModel>(
+      create: (context) {
+        if (contactId != null) {
           viewModel.contactId = contactId;
-          if (contactId != null) {
-            viewModel.getContact(contactId!);
-          }
-          return viewModel;
-        },
-        child: BlocConsumer<ContactDetailsViewModel, ContactsStates>(
+          viewModel.getContact(contactId!);
+        }
+        return viewModel;
+      },
+      child: Scaffold(
+        backgroundColor: AppColors.secondaryColor,
+        appBar: _buildAppBar(context),
+        body: BlocConsumer<ContactDetailsViewModel, ContactsStates>(
+          listener: (context, state) {
+            if (state.contactState?.errorMessage != null) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(state.contactState!.errorMessage!),
+                  backgroundColor: Colors.red,
+                ),
+              );
+            }
+          },
           builder: (context, state) {
+            final viewModel = context.read<ContactDetailsViewModel>();
             final data = state.contactState?.data;
 
             if (state.contactState?.isLoading == true && data == null) {
@@ -40,20 +52,10 @@ class ContactDetails extends StatelessWidget {
                 children: [
                   _buildInfoCard(context, data),
                   const SizedBox(height: 32),
-                  _buildActionButtons(context),
+                  _buildActionButtons(context, data, viewModel),
                 ],
               ),
             );
-          },
-          listener: (context, state) {
-            if (state.contactState?.errorMessage != null) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(state.contactState!.errorMessage!),
-                  backgroundColor: Colors.red,
-                ),
-              );
-            }
           },
         ),
       ),
@@ -138,12 +140,16 @@ class ContactDetails extends StatelessWidget {
     );
   }
 
-  Widget _buildActionButtons(BuildContext context) {
+  Widget _buildActionButtons(
+    BuildContext context,
+    dynamic data,
+    ContactDetailsViewModel viewModel,
+  ) {
     return Row(
       children: [
         Expanded(
           child: ElevatedButton.icon(
-            onPressed: () {},
+            onPressed: () => _showEditDialog(context, data, viewModel),
             icon: const Icon(Icons.edit, size: 18),
             label: Text(AppLocale(context).edit),
             style: ElevatedButton.styleFrom(
@@ -160,7 +166,24 @@ class ContactDetails extends StatelessWidget {
         const SizedBox(width: 16),
         Expanded(
           child: OutlinedButton.icon(
-            onPressed: () {},
+            onPressed: () async {
+              final isDeleted = await viewModel.deleteContact(contactId!);
+              if (isDeleted) {
+                _showStatusDialog(
+                  context,
+                  title: 'Success',
+                  message: 'Contact deleted successfully!',
+                  isSuccess: true,
+                );
+              } else {
+                _showStatusDialog(
+                  context,
+                  title: 'Error',
+                  message: 'Failed to delete contact.',
+                  isSuccess: false,
+                );
+              }
+            },
             icon: const Icon(Icons.delete_outline, size: 18),
             label: Text(AppLocale(context).delete),
             style: OutlinedButton.styleFrom(
@@ -177,6 +200,148 @@ class ContactDetails extends StatelessWidget {
     );
   }
 
+  void _showEditDialog(
+    BuildContext context,
+    dynamic currentData,
+    ContactDetailsViewModel viewModel,
+  ) {
+    viewModel.firstNameController.text = currentData?.firstName;
+    viewModel.lastNameController.text = currentData?.lastName ?? '';
+    viewModel.emailController.text = currentData?.email ?? '';
+    viewModel.phoneController.text = currentData?.phoneNumber ?? '';
+    viewModel.cityController.text = currentData?.addressCity ?? '';
+    viewModel.countryController.text = currentData?.addressCountry ?? '';
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(AppLocale(context).edit),
+          content: SizedBox(
+            width: MediaQuery.of(context).size.width * 0.8,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  _spacing(
+                    AppTextField(
+                      controller: viewModel.firstNameController,
+                      label: AppLocale(context).firstName,
+                      hint: AppLocale(context).firstName,
+                    ),
+                  ),
+                  _spacing(
+                    AppTextField(
+                      controller: viewModel.lastNameController,
+                      label: AppLocale(context).lastName,
+                      hint: AppLocale(context).lastName,
+                    ),
+                  ),
+                  _spacing(
+                    AppTextField(
+                      controller: viewModel.emailController,
+                      label: AppLocale(context).email,
+                      hint: AppLocale(context).email,
+                      keyboardType: TextInputType.emailAddress,
+                    ),
+                  ),
+                  _spacing(
+                    AppTextField(
+                      controller: viewModel.phoneController,
+                      label: AppLocale(context).phoneNumber,
+                      hint: AppLocale(context).phoneNumber,
+                      keyboardType: TextInputType.phone,
+                    ),
+                  ),
+                  _spacing(
+                    AppTextField(
+                      controller: viewModel.cityController,
+                      label: AppLocale(context).city,
+                      hint: AppLocale(context).city,
+                    ),
+                  ),
+                  _spacing(
+                    AppTextField(
+                      controller: viewModel.countryController,
+                      label: AppLocale(context).country,
+                      hint: AppLocale(context).country,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text(
+                AppLocale(context).cancle,
+                style: const TextStyle(color: Colors.grey),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                if (contactId == null) return;
+                final bool isUpdate = await viewModel.updateContact(
+                  contactId!,
+                  viewModel.firstNameController.text,
+                  viewModel.lastNameController.text,
+                  viewModel.emailController.text,
+                  viewModel.phoneController.text,
+                  viewModel.cityController.text,
+                  viewModel.countryController.text,
+                );
+                Navigator.pop(context);
+                if (isUpdate) {
+                  _showStatusDialog(
+                    context,
+                    title: 'Success',
+                    message: 'Contact updated successfully!',
+                    isSuccess: true,
+                  );
+                }
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue[700],
+              ),
+              child: Text(
+                AppLocale(context).ok,
+                style: const TextStyle(color: Colors.white),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showStatusDialog(
+    BuildContext context, {
+    required String title,
+    required String message,
+    required bool isSuccess,
+  }) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(title),
+        content: Text(message),
+        actions: [
+          TextButton(
+            child: Text(AppLocale(context).ok),
+            onPressed: () {
+              Navigator.of(context).pop();
+              if (isSuccess) Navigator.of(context).pop();
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _spacing(Widget child) =>
+      Padding(padding: const EdgeInsets.only(bottom: 16), child: child);
+
   PreferredSizeWidget _buildAppBar(BuildContext context) {
     return AppBar(
       backgroundColor: AppColors.primaryColor,
@@ -185,10 +350,6 @@ class ContactDetails extends StatelessWidget {
       title: Text(
         AppLocale(context).contactDetails,
         style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-      ),
-      bottom: PreferredSize(
-        preferredSize: const Size.fromHeight(1),
-        child: Divider(height: 1, color: Colors.grey.shade200),
       ),
     );
   }

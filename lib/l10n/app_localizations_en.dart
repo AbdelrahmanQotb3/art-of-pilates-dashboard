@@ -163,4 +163,28 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get delete => 'Delete';
+
+  @override
+  String get city => 'City';
+
+  @override
+  String get country => 'Country';
+
+  @override
+  String get cancle => 'Cancle';
+
+  @override
+  String get ok => 'Ok';
+
+  @override
+  String get addContact => 'Add Contact';
+
+  @override
+  String get addContactSuccess => 'Contact added successfully';
+
+  @override
+  String get addContactFail => 'Failed to add contact';
+
+  @override
+  String get error => 'Error';
 }

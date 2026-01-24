@@ -101,5 +101,21 @@
     "edit" : "تعديل",
     "@edit" : {},
     "delete" : "حذف",
-    "@delete" : {}
+    "@delete" : {},
+    "city" : "المدينة",
+    "@city" : {},
+    "country" : "البلد",
+    "@country" : {},
+    "cancle": "اغلاق",
+    "@cancle": {},
+    "ok" : "موافق",
+    "@ok" : {},
+    "addContact" : "اضافة جهة الاتصال",
+    "@addContact" : {},
+    "addContactSuccess": "تم اضافة جهة الاتصال بنجاح",
+    "@addContactSuccess": {},
+    "addContactFailed": "فشل اضافة جهة الاتصال",
+    "@addContactFailed": {},
+    "error" : "خطأ",
+    "@error" : {}
 }

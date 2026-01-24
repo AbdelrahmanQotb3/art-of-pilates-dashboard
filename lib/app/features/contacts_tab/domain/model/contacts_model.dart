@@ -35,7 +35,7 @@ class ContactEntity {
     String? addressCountry,
   }) {
     return ContactEntity(
-      id: id ?? this.id,
+      id: id,
       firstName: firstName ?? this.firstName,
       lastName: lastName ?? this.lastName,
       email: email ?? this.email,

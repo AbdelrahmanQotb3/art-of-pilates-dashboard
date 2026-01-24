@@ -403,6 +403,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Delete'**
   String get delete;
+
+  /// No description provided for @city.
+  ///
+  /// In en, this message translates to:
+  /// **'City'**
+  String get city;
+
+  /// No description provided for @country.
+  ///
+  /// In en, this message translates to:
+  /// **'Country'**
+  String get country;
+
+  /// No description provided for @cancle.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancle'**
+  String get cancle;
+
+  /// No description provided for @ok.
+  ///
+  /// In en, this message translates to:
+  /// **'Ok'**
+  String get ok;
+
+  /// No description provided for @addContact.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Contact'**
+  String get addContact;
+
+  /// No description provided for @addContactSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact added successfully'**
+  String get addContactSuccess;
+
+  /// No description provided for @addContactFail.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to add contact'**
+  String get addContactFail;
+
+  /// No description provided for @error.
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get error;
 }
 
 class _AppLocalizationsDelegate

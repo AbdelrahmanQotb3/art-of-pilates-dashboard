@@ -106,11 +106,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i391.ContactsUseCase>(
       () => _i391.ContactsUseCase(gh<_i750.ContactsRepoContract>()),
     );
+    gh.lazySingleton<_i807.ContactsViewModel>(
+      () => _i807.ContactsViewModel(gh<_i391.ContactsUseCase>()),
+    );
     gh.factory<_i49.ContactDetailsViewModel>(
       () => _i49.ContactDetailsViewModel(gh<_i391.ContactsUseCase>()),
-    );
-    gh.factory<_i807.ContactsViewModel>(
-      () => _i807.ContactsViewModel(gh<_i391.ContactsUseCase>()),
     );
     gh.factory<_i733.SignupViewModel>(
       () => _i733.SignupViewModel(gh<_i469.SignupUseCase>()),

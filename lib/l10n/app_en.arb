@@ -101,5 +101,21 @@
     "edit" : "Edit",
     "@edit" : {},
     "delete" : "Delete",
-    "@delete" : {}
+    "@delete" : {},
+    "city" : "City",
+    "@city" : {},
+    "country" : "Country",
+    "@country" : {},
+    "cancle": "Cancle",
+    "@cancle": {},
+    "ok":"Ok",
+    "@ok":{},
+    "addContact" : "Add Contact",
+    "@addContact" : {},
+    "addContactSuccess" : "Contact added successfully",
+    "@addContactSuccess" : {},
+    "addContactFail" : "Failed to add contact",
+    "@addContactFail" : {},
+    "error" : "Error",
+    "@error" : {}
 }

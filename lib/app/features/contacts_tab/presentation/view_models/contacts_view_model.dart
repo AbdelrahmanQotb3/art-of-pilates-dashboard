@@ -5,7 +5,7 @@ import 'package:pilates_dashboard/app/config/base_response/base_response.dart';
 import 'package:pilates_dashboard/app/config/base_state/base_state.dart';
 import 'package:pilates_dashboard/app/features/contacts_tab/domain/model/contacts_model.dart';
 import 'package:pilates_dashboard/app/features/contacts_tab/domain/use_cases/contacts_use_case.dart';
-import 'package:pilates_dashboard/app/features/contacts_tab/presntation/view_models/contacts_states.dart';
+import 'package:pilates_dashboard/app/features/contacts_tab/presentation/view_models/contacts_states.dart';
 
 @lazySingleton
 class ContactsViewModel extends Cubit<ContactsStates> {

@@ -187,4 +187,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get error => 'Error';
+
+  @override
+  String get planName => 'Plan Name';
+
+  @override
+  String get pricing => 'Pricing';
+
+  @override
+  String get duration => 'Duration';
+
+  @override
+  String get status => 'Status';
+
+  @override
+  String get addPlan => 'Add Plan';
 }

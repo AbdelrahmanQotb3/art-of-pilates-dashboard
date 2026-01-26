@@ -117,5 +117,25 @@
     "addContactFailed": "فشل اضافة جهة الاتصال",
     "@addContactFailed": {},
     "error" : "خطأ",
-    "@error" : {}
+    "@error" : {},
+    "planName": "اسم الخطة",
+    "@planName": {
+        "description": "The label for the name of the pricing plan"
+    },
+    "pricing": "السعر",
+    "@pricing": {
+        "description": "The label for the cost of the plan"
+    },
+    "duration": "المدة",
+    "@duration": {
+        "description": "The label for the plan duration or validity"
+    },
+    "status": "الحالة",
+    "@status": {
+        "description": "The current status of the plan (e.g., Active, Hidden)"
+    },
+    "addPlan": "إضافة خطة",
+    "@addPlan": {
+        "description": "Button text to add a new pricing plan"
+    }
 }

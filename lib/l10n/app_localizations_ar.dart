@@ -189,4 +189,19 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get error => 'خطأ';
+
+  @override
+  String get planName => 'اسم الخطة';
+
+  @override
+  String get pricing => 'السعر';
+
+  @override
+  String get duration => 'المدة';
+
+  @override
+  String get status => 'الحالة';
+
+  @override
+  String get addPlan => 'إضافة خطة';
 }

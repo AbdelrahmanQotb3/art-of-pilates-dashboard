@@ -3,45 +3,45 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pilates_dashboard/app/config/di/di.dart';
 import 'package:pilates_dashboard/app/core/colors/app_colors.dart';
 import 'package:pilates_dashboard/app/core/utils/app_locale.dart';
-import 'package:pilates_dashboard/app/features/contacts_tab/presntation/view_models/contact_details_view_model.dart';
-import 'package:pilates_dashboard/app/features/contacts_tab/presntation/view_models/contacts_states.dart';
+import 'package:pilates_dashboard/app/features/pricing_plans_tab/presentation/view_model/pricing_plan_details_view_model.dart';
+import 'package:pilates_dashboard/app/features/pricing_plans_tab/presentation/view_model/pricing_plans_states.dart';
 import 'package:pilates_dashboard/app/reusable_widgets/app_text_field.dart';
 
-class ContactDetails extends StatelessWidget {
-  final viewModel = getIt<ContactDetailsViewModel>();
-  final int? contactId;
+class PricingPlanDetailsScreen extends StatelessWidget {
+  final viewModel = getIt<PricingPlanDetailsViewModel>();
+  final int? planId;
 
-  ContactDetails({super.key, this.contactId});
+  PricingPlanDetailsScreen({super.key, this.planId});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<ContactDetailsViewModel>(
+    return BlocProvider<PricingPlanDetailsViewModel>(
       create: (context) {
-        if (contactId != null) {
-          viewModel.contactId = contactId;
-          viewModel.getContact(contactId!);
+        if (planId != null) {
+          viewModel.planId = planId;
+          viewModel.getPricingPlanDetails(planId!);
         }
         return viewModel;
       },
       child: Scaffold(
         backgroundColor: AppColors.secondaryColor,
         appBar: _buildAppBar(context),
-        body: BlocConsumer<ContactDetailsViewModel, ContactsStates>(
+        body: BlocConsumer<PricingPlanDetailsViewModel, PricingPlansStates>(
           listener: (context, state) {
-            if (state.contactState?.errorMessage != null) {
+            if (state.pricingPlanDetailsState?.errorMessage != null) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: Text(state.contactState!.errorMessage!),
+                  content: Text(state.pricingPlanDetailsState!.errorMessage!),
                   backgroundColor: Colors.red,
                 ),
               );
             }
           },
           builder: (context, state) {
-            final viewModel = context.read<ContactDetailsViewModel>();
-            final data = state.contactState?.data;
+            final data = state.pricingPlanDetailsState?.data;
 
-            if (state.contactState?.isLoading == true && data == null) {
+            if (state.pricingPlanDetailsState?.isLoading == true &&
+                data == null) {
               return const Center(child: CircularProgressIndicator());
             }
 
@@ -52,7 +52,7 @@ class ContactDetails extends StatelessWidget {
                 children: [
                   _buildInfoCard(context, data),
                   const SizedBox(height: 32),
-                  _buildActionButtons(context, data, viewModel),
+                  _buildActionButtons(context, data),
                 ],
               ),
             );
@@ -63,6 +63,7 @@ class ContactDetails extends StatelessWidget {
   }
 
   Widget _buildInfoCard(BuildContext context, dynamic data) {
+    final locale = AppLocale(context);
     return Card(
       elevation: 0,
       shape: RoundedRectangleBorder(
@@ -74,27 +75,27 @@ class ContactDetails extends StatelessWidget {
         child: Column(
           children: [
             _buildDetailItem(
-              icon: Icons.person_outline,
-              label: AppLocale(context).firstName,
-              value: data?.firstName,
+              icon: Icons.label_outline,
+              label: locale.planName,
+              value: data?.planName,
             ),
             const Divider(height: 32),
             _buildDetailItem(
-              icon: Icons.person_outline,
-              label: AppLocale(context).lastName,
-              value: data?.lastName,
+              icon: Icons.payments_outlined,
+              label: locale.pricing,
+              value: data?.pricing != null ? '${data.pricing} SAR' : null,
             ),
             const Divider(height: 32),
             _buildDetailItem(
-              icon: Icons.email_outlined,
-              label: AppLocale(context).email,
-              value: data?.email,
+              icon: Icons.timer_outlined,
+              label: locale.duration,
+              value: data?.duration,
             ),
             const Divider(height: 32),
             _buildDetailItem(
-              icon: Icons.phone_android_outlined,
-              label: AppLocale(context).phoneNumber,
-              value: data?.phoneNumber,
+              icon: Icons.info_outline,
+              label: locale.status,
+              value: data?.status,
             ),
           ],
         ),
@@ -140,16 +141,12 @@ class ContactDetails extends StatelessWidget {
     );
   }
 
-  Widget _buildActionButtons(
-    BuildContext context,
-    dynamic data,
-    ContactDetailsViewModel viewModel,
-  ) {
+  Widget _buildActionButtons(BuildContext context, dynamic data) {
     return Row(
       children: [
         Expanded(
           child: ElevatedButton.icon(
-            onPressed: () => _showEditDialog(context, data, viewModel),
+            onPressed: () => _showEditDialog(context, data),
             icon: const Icon(Icons.edit, size: 18),
             label: Text(AppLocale(context).edit),
             style: ElevatedButton.styleFrom(
@@ -167,19 +164,19 @@ class ContactDetails extends StatelessWidget {
         Expanded(
           child: OutlinedButton.icon(
             onPressed: () async {
-              final isDeleted = await viewModel.deleteContact(contactId!);
+              final bool isDeleted = await viewModel.deletePricingPlan(data.id);
               if (isDeleted) {
                 _showStatusDialog(
                   context,
-                  title: 'Success',
-                  message: 'Contact deleted successfully!',
+                  title: "Deleted",
+                  message: "Pricing plan deleted successfully.",
                   isSuccess: true,
                 );
               } else {
                 _showStatusDialog(
                   context,
-                  title: 'Error',
-                  message: 'Failed to delete contact.',
+                  title: "Error",
+                  message: "Failed to delete pricing plan.",
                   isSuccess: false,
                 );
               }
@@ -200,118 +197,15 @@ class ContactDetails extends StatelessWidget {
     );
   }
 
-  void _showEditDialog(
-    BuildContext context,
-    dynamic currentData,
-    ContactDetailsViewModel viewModel,
-  ) {
-    viewModel.firstNameController.text = currentData?.firstName;
-    viewModel.lastNameController.text = currentData?.lastName ?? '';
-    viewModel.emailController.text = currentData?.email ?? '';
-    viewModel.phoneController.text = currentData?.phoneNumber ?? '';
-    viewModel.cityController.text = currentData?.addressCity ?? '';
-    viewModel.countryController.text = currentData?.addressCountry ?? '';
-
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text(AppLocale(context).edit),
-          content: SizedBox(
-            width: MediaQuery.of(context).size.width * 0.8,
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  _spacing(
-                    AppTextField(
-                      controller: viewModel.firstNameController,
-                      label: AppLocale(context).firstName,
-                      hint: AppLocale(context).firstName,
-                    ),
-                  ),
-                  _spacing(
-                    AppTextField(
-                      controller: viewModel.lastNameController,
-                      label: AppLocale(context).lastName,
-                      hint: AppLocale(context).lastName,
-                    ),
-                  ),
-                  _spacing(
-                    AppTextField(
-                      controller: viewModel.emailController,
-                      label: AppLocale(context).email,
-                      hint: AppLocale(context).email,
-                      keyboardType: TextInputType.emailAddress,
-                    ),
-                  ),
-                  _spacing(
-                    AppTextField(
-                      controller: viewModel.phoneController,
-                      label: AppLocale(context).phoneNumber,
-                      hint: AppLocale(context).phoneNumber,
-                      keyboardType: TextInputType.phone,
-                    ),
-                  ),
-                  _spacing(
-                    AppTextField(
-                      controller: viewModel.cityController,
-                      label: AppLocale(context).city,
-                      hint: AppLocale(context).city,
-                    ),
-                  ),
-                  _spacing(
-                    AppTextField(
-                      controller: viewModel.countryController,
-                      label: AppLocale(context).country,
-                      hint: AppLocale(context).country,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: Text(
-                AppLocale(context).cancle,
-                style: const TextStyle(color: Colors.grey),
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () async {
-                if (contactId == null) return;
-                final bool isUpdate = await viewModel.updateContact(
-                  contactId!,
-                  viewModel.firstNameController.text,
-                  viewModel.lastNameController.text,
-                  viewModel.emailController.text,
-                  viewModel.phoneController.text,
-                  viewModel.cityController.text,
-                  viewModel.countryController.text,
-                );
-                Navigator.pop(context);
-                if (isUpdate) {
-                  _showStatusDialog(
-                    context,
-                    title: 'Success',
-                    message: 'Contact updated successfully!',
-                    isSuccess: true,
-                  );
-                }
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue[700],
-              ),
-              child: Text(
-                AppLocale(context).ok,
-                style: const TextStyle(color: Colors.white),
-              ),
-            ),
-          ],
-        );
-      },
+  PreferredSizeWidget _buildAppBar(BuildContext context) {
+    return AppBar(
+      backgroundColor: AppColors.primaryColor,
+      foregroundColor: AppColors.whiteColor,
+      elevation: 0,
+      title: Text(
+        'Pricing Plan Details',
+        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+      ),
     );
   }
 
@@ -339,18 +233,118 @@ class ContactDetails extends StatelessWidget {
     );
   }
 
-  Widget _spacing(Widget child) =>
-      Padding(padding: const EdgeInsets.only(bottom: 16), child: child);
+  void _showEditDialog(BuildContext context, dynamic currentData) {
+    viewModel.planNameController.text = currentData?.planName ?? '';
+    viewModel.pricingController.text = currentData?.pricing?.toString() ?? '';
+    viewModel.durationController.text = currentData?.duration ?? '';
+    viewModel.statusController.text = currentData?.status ?? '';
 
-  PreferredSizeWidget _buildAppBar(BuildContext context) {
-    return AppBar(
-      backgroundColor: AppColors.primaryColor,
-      foregroundColor: AppColors.whiteColor,
-      elevation: 0,
-      title: Text(
-        AppLocale(context).contactDetails,
-        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-      ),
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(AppLocale(context).edit),
+          content: SizedBox(
+            width: MediaQuery.of(context).size.width * 0.8,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  _spacing(
+                    AppTextField(
+                      controller: viewModel.planNameController,
+                      label: AppLocale(context).planName,
+                      hint: AppLocale(context).planName,
+                    ),
+                  ),
+                  _spacing(
+                    AppTextField(
+                      controller: viewModel.pricingController,
+                      label: AppLocale(context).pricing,
+                      hint: AppLocale(context).pricing,
+                      keyboardType: TextInputType.number,
+                    ),
+                  ),
+                  _spacing(
+                    AppTextField(
+                      controller: viewModel.durationController,
+                      label: AppLocale(context).duration,
+                      hint: AppLocale(context).duration,
+                    ),
+                  ),
+                  _spacing(
+                    AppTextField(
+                      controller: viewModel.statusController,
+                      label: AppLocale(context).status,
+                      hint: AppLocale(context).status,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text(
+                AppLocale(context).cancle,
+                style: const TextStyle(color: Colors.grey),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                if (planId == null) return;
+                try {
+                  final pricing = viewModel.pricingController.text.isNotEmpty
+                      ? double.parse(viewModel.pricingController.text)
+                      : null;
+                  final bool isUpdate = await viewModel.updatePricingPlan(
+                    planId!,
+                    viewModel.planNameController.text,
+                    pricing,
+                    viewModel.durationController.text,
+                    viewModel.statusController.text,
+                  );
+                  Navigator.pop(context);
+                  if (isUpdate) {
+                    _showStatusDialog(
+                      context,
+                      title: 'Success',
+                      message: 'Pricing plan updated successfully!',
+                      isSuccess: true,
+                    );
+                    viewModel.getPricingPlanDetails(planId!);
+                  } else {
+                    _showStatusDialog(
+                      context,
+                      title: 'Error',
+                      message: 'Failed to update pricing plan.',
+                      isSuccess: false,
+                    );
+                  }
+                } on FormatException {
+                  _showStatusDialog(
+                    context,
+                    title: 'Error',
+                    message: 'Please enter a valid price.',
+                    isSuccess: false,
+                  );
+                }
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue[700],
+              ),
+              child: Text(
+                AppLocale(context).ok,
+                style: const TextStyle(color: Colors.white),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
+
+  Widget _spacing(Widget child) =>
+      Padding(padding: const EdgeInsets.only(bottom: 16), child: child);
 }

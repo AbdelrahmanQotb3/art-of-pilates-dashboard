@@ -117,5 +117,15 @@
     "addContactFail" : "Failed to add contact",
     "@addContactFail" : {},
     "error" : "Error",
-    "@error" : {}
+    "@error" : {},
+    "planName" : "Plan Name",
+    "@planName" : {},
+    "pricing" : "Pricing",
+    "@pricing" : {},
+    "duration" : "Duration",
+    "@duration" : {},
+    "status" : "Status",
+    "@status" : {},
+    "addPlan" : "Add Plan",
+    "@addPlan" : {}
 }

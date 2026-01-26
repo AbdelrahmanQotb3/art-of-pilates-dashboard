@@ -9,4 +9,10 @@ class EndPoints {
   static const String deleteContact = "contacts/deleteContact";
   static const String updateContact = "contacts/updateContact/{id}";
   static const String createContact = "contacts/createContact";
+
+  static const String getPricingPlans = "pricing-plans/getPlans";
+  static const String getPlan = "pricing-plans/getPlanById";
+  static const String addPlan = "pricing-plans/addPlan";
+  static const String deletePlan = "pricing-plans/deletePlanById";
+  static const String updatePlan = "pricing-plans/updatePlan/{id}";
 }

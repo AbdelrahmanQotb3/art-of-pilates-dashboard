@@ -3,6 +3,7 @@ abstract class Routes {
   static const String signupScreen = _Paths.signup;
   static const String homeScreen = _Paths.home;
   static const String contactDetailsScreen = _Paths.contactDetails;
+  static const String pricingPlanDetailsScreen = _Paths.pricingPlanDetails;
 }
 
 abstract class _Paths {
@@ -10,4 +11,5 @@ abstract class _Paths {
   static const String signup = "signup";
   static const String home = "home";
   static const String contactDetails = "contactDetails";
+  static const String pricingPlanDetails = "pricingPlanDetails";
 }

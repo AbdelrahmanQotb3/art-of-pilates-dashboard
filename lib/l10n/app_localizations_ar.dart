@@ -204,4 +204,49 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get addPlan => 'إضافة خطة';
+
+  @override
+  String get addStaff => 'إضافة موظف';
+
+  @override
+  String get addStaffMember => 'إضافة عضو في فريق العمل';
+
+  @override
+  String get name => 'الاسم';
+
+  @override
+  String get phone => 'الهاتف';
+
+  @override
+  String get customAction => 'إجراء مخصص';
+
+  @override
+  String get visibility => 'الظهور';
+
+  @override
+  String get visible => 'مرئي';
+
+  @override
+  String get hidden => 'مخفي';
+
+  @override
+  String get index => 'الفهرس';
+
+  @override
+  String get notAvailable => 'غير متاح';
+
+  @override
+  String get staffDetails => 'تفاصيل الموظف';
+
+  @override
+  String get success => 'نجاح';
+
+  @override
+  String get fillAllFields => 'يرجى ملء جميع الحقول المطلوبة';
+
+  @override
+  String get staffMemberAddedSuccess => 'تم إضافة موظف بنجاح';
+
+  @override
+  String get staffMemberAddedFailed => 'فشل إضافة الموظف';
 }

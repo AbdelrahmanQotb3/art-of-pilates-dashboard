@@ -202,4 +202,49 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get addPlan => 'Add Plan';
+
+  @override
+  String get addStaff => 'Add Staff';
+
+  @override
+  String get addStaffMember => 'Add Staff Member';
+
+  @override
+  String get name => 'Name';
+
+  @override
+  String get phone => 'Phone';
+
+  @override
+  String get customAction => 'Custom Action';
+
+  @override
+  String get visibility => 'Visibility';
+
+  @override
+  String get visible => 'Visible';
+
+  @override
+  String get hidden => 'Hidden';
+
+  @override
+  String get index => 'Index';
+
+  @override
+  String get notAvailable => 'N/A';
+
+  @override
+  String get staffDetails => 'Staff Details';
+
+  @override
+  String get success => 'Success';
+
+  @override
+  String get fillAllFields => 'Please fill all required fields';
+
+  @override
+  String get staffMemberAddedSuccess => 'Staff member added successfully';
+
+  @override
+  String get staffMemberAddedFailed => 'Failed to add staff member';
 }

@@ -481,6 +481,96 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Add Plan'**
   String get addPlan;
+
+  /// No description provided for @addStaff.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Staff'**
+  String get addStaff;
+
+  /// No description provided for @addStaffMember.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Staff Member'**
+  String get addStaffMember;
+
+  /// No description provided for @name.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get name;
+
+  /// No description provided for @phone.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone'**
+  String get phone;
+
+  /// No description provided for @customAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom Action'**
+  String get customAction;
+
+  /// No description provided for @visibility.
+  ///
+  /// In en, this message translates to:
+  /// **'Visibility'**
+  String get visibility;
+
+  /// No description provided for @visible.
+  ///
+  /// In en, this message translates to:
+  /// **'Visible'**
+  String get visible;
+
+  /// No description provided for @hidden.
+  ///
+  /// In en, this message translates to:
+  /// **'Hidden'**
+  String get hidden;
+
+  /// No description provided for @index.
+  ///
+  /// In en, this message translates to:
+  /// **'Index'**
+  String get index;
+
+  /// No description provided for @notAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'N/A'**
+  String get notAvailable;
+
+  /// No description provided for @staffDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Staff Details'**
+  String get staffDetails;
+
+  /// No description provided for @success.
+  ///
+  /// In en, this message translates to:
+  /// **'Success'**
+  String get success;
+
+  /// No description provided for @fillAllFields.
+  ///
+  /// In en, this message translates to:
+  /// **'Please fill all required fields'**
+  String get fillAllFields;
+
+  /// No description provided for @staffMemberAddedSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Staff member added successfully'**
+  String get staffMemberAddedSuccess;
+
+  /// No description provided for @staffMemberAddedFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to add staff member'**
+  String get staffMemberAddedFailed;
 }
 
 class _AppLocalizationsDelegate

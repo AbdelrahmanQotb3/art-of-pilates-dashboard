@@ -71,6 +71,21 @@ import '../../features/pricing_plans_tab/presentation/view_model/pricing_plan_de
     as _i613;
 import '../../features/pricing_plans_tab/presentation/view_model/pricing_plans_view_model.dart'
     as _i529;
+import '../../features/staff_tab/api/api_client/staff_api_client.dart' as _i867;
+import '../../features/staff_tab/api/data_source_impl/staff_data_source_impl.dart'
+    as _i329;
+import '../../features/staff_tab/data/data_source/staff_data_source_contract.dart'
+    as _i683;
+import '../../features/staff_tab/data/repo/staff_members_repo_impl.dart'
+    as _i272;
+import '../../features/staff_tab/domain/repo/staff_members_repo_contract.dart'
+    as _i26;
+import '../../features/staff_tab/domain/use_cases/staff_members_use_case.dart'
+    as _i523;
+import '../../features/staff_tab/presentation/view_model/staff_member_view_model.dart'
+    as _i847;
+import '../../features/staff_tab/presentation/view_model/staff_members_view_model.dart'
+    as _i806;
 import '../dio_module/di_model.dart' as _i183;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -94,6 +109,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i344.PricingPlansApiClient>(
       () => _i344.PricingPlansApiClient(gh<_i361.Dio>()),
+    );
+    gh.factory<_i867.StaffApiClient>(
+      () => _i867.StaffApiClient(gh<_i361.Dio>()),
     );
     gh.factory<_i709.ContactsDataSourceContract>(
       () => _i931.ContactsDataSourceImpl(gh<_i416.ContactsApiClient>()),
@@ -119,6 +137,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i620.SigninUseCase>(
       () => _i620.SigninUseCase(gh<_i857.SigninRepoContract>()),
+    );
+    gh.factory<_i683.StaffDataSourceContract>(
+      () => _i329.StaffDataSourceImpl(gh<_i867.StaffApiClient>()),
     );
     gh.factory<_i469.SignupUseCase>(
       () => _i469.SignupUseCase(gh<_i218.SignupRepoContract>()),
@@ -150,6 +171,18 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i529.PricingPlansViewModel>(
       () => _i529.PricingPlansViewModel(gh<_i106.PricingPlansUseCase>()),
+    );
+    gh.factory<_i26.StaffMembersRepoContract>(
+      () => _i272.StaffMembersRepoImpl(gh<_i683.StaffDataSourceContract>()),
+    );
+    gh.factory<_i523.StaffMembersUseCase>(
+      () => _i523.StaffMembersUseCase(gh<_i26.StaffMembersRepoContract>()),
+    );
+    gh.factory<_i847.StaffMemberViewModel>(
+      () => _i847.StaffMemberViewModel(gh<_i523.StaffMembersUseCase>()),
+    );
+    gh.factory<_i806.StaffMembersViewModel>(
+      () => _i806.StaffMembersViewModel(gh<_i523.StaffMembersUseCase>()),
     );
     return this;
   }

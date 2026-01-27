@@ -7,7 +7,7 @@ import 'package:pilates_dashboard/app/features/tabs/invoices_tab.dart';
 import 'package:pilates_dashboard/app/features/pricing_plans_tab/presentation/views/pricing_plans_tab.dart';
 import 'package:pilates_dashboard/app/features/tabs/services_tab.dart';
 import 'package:pilates_dashboard/app/features/tabs/sessions_tab.dart';
-import 'package:pilates_dashboard/app/features/tabs/staff_tab.dart';
+import 'package:pilates_dashboard/app/features/staff_tab/presentation/views/staff_tab.dart';
 import 'package:pilates_dashboard/app/features/tabs/subscriptions_tab.dart';
 import 'package:pilates_dashboard/app/reusable_widgets/app_text_field.dart';
 import 'package:pilates_dashboard/l10n/app_localizations.dart';
@@ -33,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
     const DiscountsTab(),
     const InvoicesTab(),
     ContactsTab(),
-    const StaffTab(),
+    StaffTab(),
   ];
 
   @override

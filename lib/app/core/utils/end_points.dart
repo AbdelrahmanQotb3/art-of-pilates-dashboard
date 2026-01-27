@@ -15,4 +15,10 @@ class EndPoints {
   static const String addPlan = "pricing-plans/addPlan";
   static const String deletePlan = "pricing-plans/deletePlanById";
   static const String updatePlan = "pricing-plans/updatePlan/{id}";
+
+  static const String getStaffMembers = "staff/getStaffMembers";
+  static const String getStaffMember = "staff/getStaffById";
+  static const String addStaffMember = "staff/addStaffMember";
+  static const String deleteStaffMember = "staff/deleteStaffMember";
+  static const String updateStaffMember = "staff/updateStaffMember";
 }

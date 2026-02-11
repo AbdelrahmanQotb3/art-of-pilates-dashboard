@@ -71,6 +71,18 @@ import '../../features/pricing_plans_tab/presentation/view_model/pricing_plan_de
     as _i613;
 import '../../features/pricing_plans_tab/presentation/view_model/pricing_plans_view_model.dart'
     as _i529;
+import '../../features/services/api/api_client/services_api_client.dart'
+    as _i173;
+import '../../features/services/api/data_source_impl.dart/services_data_source_impl.dart'
+    as _i161;
+import '../../features/services/data/data_sources/services_data_source_contract.dart'
+    as _i398;
+import '../../features/services/data/repo/services_repo_impl.dart' as _i83;
+import '../../features/services/domain/repo/services_repo_contract.dart'
+    as _i726;
+import '../../features/services/domain/use_case/services_use_case.dart' as _i77;
+import '../../features/services/presentation/view_model/services_view_model.dart'
+    as _i902;
 import '../../features/staff_tab/api/api_client/staff_api_client.dart' as _i867;
 import '../../features/staff_tab/api/data_source_impl/staff_data_source_impl.dart'
     as _i329;
@@ -110,6 +122,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i344.PricingPlansApiClient>(
       () => _i344.PricingPlansApiClient(gh<_i361.Dio>()),
     );
+    gh.factory<_i173.ServicesApiClient>(
+      () => _i173.ServicesApiClient(gh<_i361.Dio>()),
+    );
     gh.factory<_i867.StaffApiClient>(
       () => _i867.StaffApiClient(gh<_i361.Dio>()),
     );
@@ -127,6 +142,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i857.SigninRepoContract>(
       () => _i683.SigninRepoImpl(gh<_i519.SigninDataSourceContract>()),
+    );
+    gh.factory<_i398.ServicesDataSourceContract>(
+      () => _i161.ServicesDataSourceImpl(gh<_i173.ServicesApiClient>()),
     );
     gh.factory<_i723.PricingPlansDataSourceContract>(
       () =>
@@ -157,11 +175,17 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i391.ContactsUseCase>(
       () => _i391.ContactsUseCase(gh<_i750.ContactsRepoContract>()),
     );
+    gh.factory<_i726.ServicesRepoContract>(
+      () => _i83.ServicesRepoImpl(gh<_i398.ServicesDataSourceContract>()),
+    );
     gh.lazySingleton<_i672.ContactsViewModel>(
       () => _i672.ContactsViewModel(gh<_i391.ContactsUseCase>()),
     );
     gh.factory<_i185.ContactDetailsViewModel>(
       () => _i185.ContactDetailsViewModel(gh<_i391.ContactsUseCase>()),
+    );
+    gh.factory<_i77.ServicesUseCase>(
+      () => _i77.ServicesUseCase(gh<_i726.ServicesRepoContract>()),
     );
     gh.factory<_i733.SignupViewModel>(
       () => _i733.SignupViewModel(gh<_i469.SignupUseCase>()),
@@ -171,6 +195,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i529.PricingPlansViewModel>(
       () => _i529.PricingPlansViewModel(gh<_i106.PricingPlansUseCase>()),
+    );
+    gh.factory<_i902.ServicesViewModel>(
+      () => _i902.ServicesViewModel(gh<_i77.ServicesUseCase>()),
     );
     gh.factory<_i26.StaffMembersRepoContract>(
       () => _i272.StaffMembersRepoImpl(gh<_i683.StaffDataSourceContract>()),

@@ -5,7 +5,7 @@ import 'package:pilates_dashboard/app/features/contacts_tab/presentation/views/c
 import 'package:pilates_dashboard/app/features/tabs/discounts_tab.dart';
 import 'package:pilates_dashboard/app/features/tabs/invoices_tab.dart';
 import 'package:pilates_dashboard/app/features/pricing_plans_tab/presentation/views/pricing_plans_tab.dart';
-import 'package:pilates_dashboard/app/features/tabs/services_tab.dart';
+import 'package:pilates_dashboard/app/features/services/presentation/views/services_tab.dart';
 import 'package:pilates_dashboard/app/features/tabs/sessions_tab.dart';
 import 'package:pilates_dashboard/app/features/staff_tab/presentation/views/staff_tab.dart';
 import 'package:pilates_dashboard/app/features/tabs/subscriptions_tab.dart';

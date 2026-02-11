@@ -21,4 +21,10 @@ class EndPoints {
   static const String addStaffMember = "staff/addStaffMember";
   static const String deleteStaffMember = "staff/deleteStaffMember";
   static const String updateStaffMember = "staff/updateStaffMember";
+
+  static const String getServices = "services/getServices";
+  static const String getOneService = "services/getOneService";
+  static const String addService = "services/addService";
+  static const String deleteService = "services/deleteService";
+  static const String updateService = "services/updateService";
 }

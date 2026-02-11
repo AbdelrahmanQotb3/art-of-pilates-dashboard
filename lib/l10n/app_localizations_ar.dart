@@ -249,4 +249,52 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get staffMemberAddedFailed => 'فشل إضافة الموظف';
+
+  @override
+  String get price => 'السعر';
+
+  @override
+  String get service => 'الخدمة';
+
+  @override
+  String get createdAt => 'انشأت في';
+
+  @override
+  String get addService => 'أضف خدمة';
+
+  @override
+  String get noData => 'لم يتم العثور على بيانات الخدمة';
+
+  @override
+  String get serviceName => 'اسم الخدمة';
+
+  @override
+  String get deleted => 'تم الحذف';
+
+  @override
+  String get deletedSuccessfully => 'تم حذف الخدمة بنجاح.';
+
+  @override
+  String get enterServiceName => 'أدخل اسم الخدمة';
+
+  @override
+  String get enterPrice => 'أدخل السعر';
+
+  @override
+  String get currency => 'العملة';
+
+  @override
+  String get enterCurrency => 'مثال: ريال سعودي أو دولار';
+
+  @override
+  String get updatedSuccessfully => 'تم تحديث الخدمة بنجاح!';
+
+  @override
+  String get failedUpdate => 'فشل تحديث الخدمة.';
+
+  @override
+  String get somethingWentWrong => 'حدث خطأ ما. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get failedToDelete => 'فشل حذف الخدمة. يرجى المحاولة مرة أخرى.';
 }

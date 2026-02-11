@@ -247,4 +247,53 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get staffMemberAddedFailed => 'Failed to add staff member';
+
+  @override
+  String get price => 'Price';
+
+  @override
+  String get service => 'Service';
+
+  @override
+  String get createdAt => 'Created At';
+
+  @override
+  String get addService => 'Add Service';
+
+  @override
+  String get noData => 'No Service Data Found';
+
+  @override
+  String get serviceName => 'Service Name';
+
+  @override
+  String get deleted => 'Deleted';
+
+  @override
+  String get deletedSuccessfully => 'Service deleted successfully.';
+
+  @override
+  String get enterServiceName => 'Enter service name';
+
+  @override
+  String get enterPrice => 'Enter price';
+
+  @override
+  String get currency => 'Currency';
+
+  @override
+  String get enterCurrency => 'e.g. SAR or USD';
+
+  @override
+  String get updatedSuccessfully => 'Service updated successfully!';
+
+  @override
+  String get failedUpdate => 'Failed to update service.';
+
+  @override
+  String get somethingWentWrong => 'Something went wrong. Please try again.';
+
+  @override
+  String get failedToDelete =>
+      'Failed to delete the service. Please try again.';
 }

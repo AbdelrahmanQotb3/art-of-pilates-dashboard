@@ -667,6 +667,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Failed to delete the service. Please try again.'**
   String get failedToDelete;
+
+  /// No description provided for @addClass.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Class'**
+  String get addClass;
+
+  /// No description provided for @className.
+  ///
+  /// In en, this message translates to:
+  /// **'Class Name'**
+  String get className;
+
+  /// No description provided for @location.
+  ///
+  /// In en, this message translates to:
+  /// **'Location'**
+  String get location;
+
+  /// No description provided for @capacity.
+  ///
+  /// In en, this message translates to:
+  /// **'Capacity'**
+  String get capacity;
+
+  /// No description provided for @tagLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Tag Line'**
+  String get tagLine;
 }
 
 class _AppLocalizationsDelegate

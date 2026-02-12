@@ -40,6 +40,16 @@ import '../../features/auth/signup/domain/use_cases/signup_usecase.dart'
     as _i469;
 import '../../features/auth/signup/presentation/view_model/signup_view_model.dart'
     as _i733;
+import '../../features/classes/api/api_client/classes_api_client.dart' as _i267;
+import '../../features/classes/api/data_source_impl/classes_data_source_impl.dart'
+    as _i240;
+import '../../features/classes/data/data_source/classes_data_source_contract.dart'
+    as _i638;
+import '../../features/classes/data/repo/classes_repo_impl.dart' as _i1066;
+import '../../features/classes/domain/repo/classes_repo_contract.dart' as _i293;
+import '../../features/classes/domain/use_cases/classes_use_case.dart' as _i258;
+import '../../features/classes/presentation/view_model/classes_view_model.dart'
+    as _i312;
 import '../../features/contacts_tab/api/api_client/contacts_api_client.dart'
     as _i416;
 import '../../features/contacts_tab/api/data_source_impl/contacts_data_source_impl.dart'
@@ -116,6 +126,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i557.SignupApiClient>(
       () => _i557.SignupApiClient(gh<_i361.Dio>()),
     );
+    gh.factory<_i267.ClassesApiClient>(
+      () => _i267.ClassesApiClient(gh<_i361.Dio>()),
+    );
     gh.factory<_i416.ContactsApiClient>(
       () => _i416.ContactsApiClient(gh<_i361.Dio>()),
     );
@@ -155,6 +168,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i620.SigninUseCase>(
       () => _i620.SigninUseCase(gh<_i857.SigninRepoContract>()),
+    );
+    gh.factory<_i638.ClassesDataSourceContract>(
+      () => _i240.ClassesDataSourceImpl(gh<_i267.ClassesApiClient>()),
     );
     gh.factory<_i683.StaffDataSourceContract>(
       () => _i329.StaffDataSourceImpl(gh<_i867.StaffApiClient>()),
@@ -202,8 +218,17 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i26.StaffMembersRepoContract>(
       () => _i272.StaffMembersRepoImpl(gh<_i683.StaffDataSourceContract>()),
     );
+    gh.factory<_i293.ClassesRepoContract>(
+      () => _i1066.ClassesRepoImpl(gh<_i638.ClassesDataSourceContract>()),
+    );
     gh.factory<_i523.StaffMembersUseCase>(
       () => _i523.StaffMembersUseCase(gh<_i26.StaffMembersRepoContract>()),
+    );
+    gh.factory<_i258.ClassesUseCase>(
+      () => _i258.ClassesUseCase(gh<_i293.ClassesRepoContract>()),
+    );
+    gh.factory<_i312.ClassesViewModel>(
+      () => _i312.ClassesViewModel(gh<_i258.ClassesUseCase>()),
     );
     gh.factory<_i847.StaffMemberViewModel>(
       () => _i847.StaffMemberViewModel(gh<_i523.StaffMembersUseCase>()),

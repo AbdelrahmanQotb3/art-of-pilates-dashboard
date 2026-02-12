@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pilates_dashboard/app/core/colors/app_colors.dart';
-import 'package:pilates_dashboard/app/features/tabs/classes_tab.dart';
+import 'package:pilates_dashboard/app/features/classes/presentation/views/classes_tab.dart';
 import 'package:pilates_dashboard/app/features/contacts_tab/presentation/views/contacts_tab.dart';
 import 'package:pilates_dashboard/app/features/tabs/discounts_tab.dart';
 import 'package:pilates_dashboard/app/features/tabs/invoices_tab.dart';
@@ -25,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int currentTabIndex = 0;
 
   late final List<Widget> sideBarTabs = [
-    const ClassesTab(),
+    ClassesTab(),
     const SessionsTab(),
     const SubscriptionsTab(),
     const ServicesTab(),

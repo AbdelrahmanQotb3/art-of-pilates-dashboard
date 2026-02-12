@@ -199,5 +199,15 @@
   "somethingWentWrong": "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
   "@somethingWentWrong": {},
   "failedToDelete": "فشل حذف الخدمة. يرجى المحاولة مرة أخرى.",
-  "@failedToDelete": {}
+  "@failedToDelete": {},
+  "addClass" : "اضافة حصة تدريبية",
+  "@addClass" : {},
+  "className" : " اسم الحصة",
+  "@className" : {},
+  "location" : "الموقع",
+  "@location" : {},
+  "capacity" : "السعة",
+  "@capacity" : {},
+  "tagLine" : "وصف الحصة",
+  "@tagLine" : {}
 }

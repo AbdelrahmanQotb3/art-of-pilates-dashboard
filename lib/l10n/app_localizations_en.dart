@@ -296,4 +296,19 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get failedToDelete =>
       'Failed to delete the service. Please try again.';
+
+  @override
+  String get addClass => 'Add Class';
+
+  @override
+  String get className => 'Class Name';
+
+  @override
+  String get location => 'Location';
+
+  @override
+  String get capacity => 'Capacity';
+
+  @override
+  String get tagLine => 'Tag Line';
 }

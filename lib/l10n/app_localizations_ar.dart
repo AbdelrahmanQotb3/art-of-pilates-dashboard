@@ -297,4 +297,19 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get failedToDelete => 'فشل حذف الخدمة. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get addClass => 'اضافة حصة تدريبية';
+
+  @override
+  String get className => ' اسم الحصة';
+
+  @override
+  String get location => 'الموقع';
+
+  @override
+  String get capacity => 'السعة';
+
+  @override
+  String get tagLine => 'وصف الحصة';
 }

@@ -189,5 +189,15 @@
   "somethingWentWrong": "Something went wrong. Please try again.",
   "@somethingWentWrong": {},
   "failedToDelete": "Failed to delete the service. Please try again.",
-  "@failedToDelete": {}
+  "@failedToDelete": {},
+  "addClass" : "Add Class",
+  "@addClass" : {},
+  "className" : "Class Name",
+  "@className" : {},
+  "location" : "Location",
+  "@location" : {},
+  "capacity" : "Capacity",
+  "@capacity" : {},
+  "tagLine" : "Tag Line",
+  "@tagLine" : {}
 }

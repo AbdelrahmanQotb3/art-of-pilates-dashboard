@@ -27,4 +27,10 @@ class EndPoints {
   static const String addService = "services/addService";
   static const String deleteService = "services/deleteService";
   static const String updateService = "services/updateService";
+
+  static const String getClasses = "classes/getClasses";
+  static const String addClass = "classes/addClass";
+  static const String getOneClass = "classes/getClass";
+  static const String deleteClass = "classes/deleteClass";
+  static const String updateClass = "classes/updateClass";
 }

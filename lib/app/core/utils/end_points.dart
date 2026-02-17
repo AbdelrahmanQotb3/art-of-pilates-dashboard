@@ -33,4 +33,7 @@ class EndPoints {
   static const String getOneClass = "classes/getClass";
   static const String deleteClass = "classes/deleteClass";
   static const String updateClass = "classes/updateClass";
+
+  static const String currentUser = "user/currentUser";
+  static const String editProfile = "user/editUser";
 }

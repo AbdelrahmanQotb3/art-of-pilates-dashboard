@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pilates_dashboard/app/core/colors/app_colors.dart';
+import 'package:pilates_dashboard/app/core/routes/routes.dart';
 import 'package:pilates_dashboard/app/features/classes/presentation/views/classes_tab.dart';
 import 'package:pilates_dashboard/app/features/contacts_tab/presentation/views/contacts_tab.dart';
 import 'package:pilates_dashboard/app/features/tabs/discounts_tab.dart';
@@ -87,7 +88,17 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-          const Spacer(),
+          Spacer(),
+          InkWell(
+            onTap: () {
+              Navigator.pushReplacementNamed(context, Routes.profileScreen);
+            },
+            child: CircleAvatar(
+              radius: 20,
+              backgroundColor: AppColors.whiteColor,
+              child: const Icon(Icons.person, color: AppColors.primaryColor),
+            ),
+          ),
         ],
       ),
     );
@@ -114,16 +125,36 @@ class _HomeScreenState extends State<HomeScreen> {
           right: BorderSide(color: Colors.grey.shade200, width: 1),
         ),
       ),
-      child: ListView.builder(
-        padding: const EdgeInsets.symmetric(vertical: 20),
-        itemCount: titles.length,
-        itemBuilder: (context, index) {
-          return _buildSideBarItem(
-            title: titles[index],
-            index: index,
-            isSelected: currentTabIndex == index,
-          );
-        },
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: ListView.builder(
+              padding: const EdgeInsets.symmetric(vertical: 20),
+              itemCount: titles.length,
+              itemBuilder: (context, index) {
+                return _buildSideBarItem(
+                  title: titles[index],
+                  index: index,
+                  isSelected: currentTabIndex == index,
+                );
+              },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 16),
+            child: ElevatedButton(
+              onPressed: () {},
+              style: ButtonStyle(
+                backgroundColor: MaterialStatePropertyAll(Colors.red),
+              ),
+              child: Text(
+                "LogOut",
+                style: TextStyle(color: Colors.white, fontSize: 16),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

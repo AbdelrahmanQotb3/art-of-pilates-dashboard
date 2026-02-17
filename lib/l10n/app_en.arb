@@ -199,5 +199,11 @@
   "capacity" : "Capacity",
   "@capacity" : {},
   "tagLine" : "Tag Line",
-  "@tagLine" : {}
+  "@tagLine" : {},
+  "accountSettings" : "Account Settings",
+  "@accountSettings" : {},
+  "editProfile" : "Edit Profile",
+  "@editProfile" :{},
+  "id" : "ID",
+  "@id" :{}
 }

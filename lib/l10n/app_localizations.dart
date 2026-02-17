@@ -697,6 +697,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Tag Line'**
   String get tagLine;
+
+  /// No description provided for @accountSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Account Settings'**
+  String get accountSettings;
+
+  /// No description provided for @editProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Profile'**
+  String get editProfile;
+
+  /// No description provided for @id.
+  ///
+  /// In en, this message translates to:
+  /// **'ID'**
+  String get id;
 }
 
 class _AppLocalizationsDelegate

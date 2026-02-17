@@ -311,4 +311,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tagLine => 'Tag Line';
+
+  @override
+  String get accountSettings => 'Account Settings';
+
+  @override
+  String get editProfile => 'Edit Profile';
+
+  @override
+  String get id => 'ID';
 }

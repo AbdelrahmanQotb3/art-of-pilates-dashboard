@@ -209,5 +209,11 @@
   "capacity" : "السعة",
   "@capacity" : {},
   "tagLine" : "وصف الحصة",
-  "@tagLine" : {}
+  "@tagLine" : {},
+  "accountSettings" : "اعدادات الحساب",
+  "@accountSettings" : {},
+  "editProfile" : "تعديل الملف الشخصي",
+  "@editProfile" :{},
+  "id" : "الرقم التعريفي",
+  "@id" :{}
 }

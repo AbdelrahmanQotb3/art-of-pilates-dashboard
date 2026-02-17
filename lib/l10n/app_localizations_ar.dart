@@ -312,4 +312,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get tagLine => 'وصف الحصة';
+
+  @override
+  String get accountSettings => 'اعدادات الحساب';
+
+  @override
+  String get editProfile => 'تعديل الملف الشخصي';
+
+  @override
+  String get id => 'الرقم التعريفي';
 }

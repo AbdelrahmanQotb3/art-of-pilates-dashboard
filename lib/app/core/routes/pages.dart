@@ -5,6 +5,7 @@ import 'package:pilates_dashboard/app/features/auth/signup/presentation/views/si
 import 'package:pilates_dashboard/app/features/contacts_tab/presentation/views/contact_details.dart';
 import 'package:pilates_dashboard/app/features/home/presentation/views/home_screen.dart';
 import 'package:pilates_dashboard/app/features/pricing_plans_tab/presentation/views/pricing_plan_details_screen.dart';
+import 'package:pilates_dashboard/app/features/profile/presentation/views/pofile_screen.dart';
 import 'package:pilates_dashboard/app/features/staff_tab/presentation/views/staff_member_detail_screen.dart';
 
 class RouteGenerator {
@@ -22,6 +23,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => PricingPlanDetailsScreen());
       case Routes.staffDetailsScreen:
         return MaterialPageRoute(builder: (_) => StaffMemberDetailScreen());
+      case Routes.profileScreen:
+        return MaterialPageRoute(builder: (_) => ProfileScreen());
       default:
         return unDefinedRoute();
     }

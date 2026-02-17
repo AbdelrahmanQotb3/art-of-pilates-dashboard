@@ -21,7 +21,9 @@ class SigninDataSourceImpl implements SigninDataSourceContract {
         "password": password,
       });
       String token = response.token!;
+      int id = response.user!.id!;
       await secureStorage.write(key: 'token', value: token);
+      await secureStorage.write(key: 'id',value: id.toString());
 
       return SuccessResponse<SigninResponse>(data: response);
     } on Exception catch (error) {

@@ -3,6 +3,7 @@ class EndPoints {
 
   static const String signin = "auth/signin";
   static const String signup = "auth/signup";
+  static const String signout = "auth/logout";
 
   static const String getContacts = "contacts/getContacts";
   static const String getContact = "contacts/getContact";

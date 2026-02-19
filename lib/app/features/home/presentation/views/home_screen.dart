@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pilates_dashboard/app/config/di/di.dart';
 import 'package:pilates_dashboard/app/core/colors/app_colors.dart';
 import 'package:pilates_dashboard/app/core/routes/routes.dart';
+import 'package:pilates_dashboard/app/features/auth/signout/presentation/view_model/signout_state.dart';
+import 'package:pilates_dashboard/app/features/auth/signout/presentation/view_model/signout_view_model.dart';
 import 'package:pilates_dashboard/app/features/classes/presentation/views/classes_tab.dart';
 import 'package:pilates_dashboard/app/features/contacts_tab/presentation/views/contacts_tab.dart';
 import 'package:pilates_dashboard/app/features/tabs/discounts_tab.dart';
@@ -14,7 +18,8 @@ import 'package:pilates_dashboard/app/reusable_widgets/app_text_field.dart';
 import 'package:pilates_dashboard/l10n/app_localizations.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  final SignoutViewModel signoutViewModel = getIt<SignoutViewModel>();
+  HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -22,7 +27,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController searchController = TextEditingController();
-
   int currentTabIndex = 0;
 
   late final List<Widget> sideBarTabs = [
@@ -88,15 +92,15 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-          Spacer(),
+          const Spacer(),
           InkWell(
             onTap: () {
-              Navigator.pushReplacementNamed(context, Routes.profileScreen);
+              Navigator.pushNamed(context, Routes.profileScreen);
             },
-            child: CircleAvatar(
+            child: const CircleAvatar(
               radius: 20,
               backgroundColor: AppColors.whiteColor,
-              child: const Icon(Icons.person, color: AppColors.primaryColor),
+              child: Icon(Icons.person, color: AppColors.primaryColor),
             ),
           ),
         ],
@@ -141,16 +145,58 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             ),
           ),
+          
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 16),
-            child: ElevatedButton(
-              onPressed: () {},
-              style: ButtonStyle(
-                backgroundColor: MaterialStatePropertyAll(Colors.red),
-              ),
-              child: Text(
-                "LogOut",
-                style: TextStyle(color: Colors.white, fontSize: 16),
+            padding: const EdgeInsets.all(24.0),
+            child: BlocProvider(
+              create: (context) => widget.signoutViewModel,
+              child: BlocConsumer<SignoutViewModel, SignoutState>(
+                listener: (context, state) {
+                  if (state.signoutState?.data != null) {
+                    Navigator.pushReplacementNamed(context, Routes.signinScreen);
+                  }
+                  if (state.signoutState?.errorMessage != null) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text(state.signoutState!.errorMessage!)),
+                    );
+                  }
+                },
+                builder: (context, state) {
+                  final bool isLoading = state.signoutState?.isLoading ?? false;
+
+                  return SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.red,
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                      onPressed: isLoading
+                          ? null
+                          : () => context.read<SignoutViewModel>().signout(),
+                      child: isLoading
+                          ? const SizedBox(
+                              height: 20,
+                              width: 20,
+                              child: CircularProgressIndicator(
+                                color: Colors.white,
+                                strokeWidth: 2,
+                              ),
+                            )
+                          : const Text(
+                              "Logout",
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                    ),
+                  );
+                },
               ),
             ),
           ),

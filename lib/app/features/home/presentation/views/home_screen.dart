@@ -11,7 +11,7 @@ import 'package:pilates_dashboard/app/features/tabs/discounts_tab.dart';
 import 'package:pilates_dashboard/app/features/tabs/invoices_tab.dart';
 import 'package:pilates_dashboard/app/features/pricing_plans_tab/presentation/views/pricing_plans_tab.dart';
 import 'package:pilates_dashboard/app/features/services/presentation/views/services_tab.dart';
-import 'package:pilates_dashboard/app/features/tabs/sessions_tab.dart';
+import 'package:pilates_dashboard/app/features/sessions/presentation/views/sessions_tab.dart';
 import 'package:pilates_dashboard/app/features/staff_tab/presentation/views/staff_tab.dart';
 import 'package:pilates_dashboard/app/features/tabs/subscriptions_tab.dart';
 import 'package:pilates_dashboard/app/reusable_widgets/app_text_field.dart';
@@ -35,8 +35,6 @@ class _HomeScreenState extends State<HomeScreen> {
     const SubscriptionsTab(),
     const ServicesTab(),
     const PricingPlansTab(),
-    const DiscountsTab(),
-    const InvoicesTab(),
     ContactsTab(),
     StaffTab(),
   ];
@@ -115,8 +113,6 @@ class _HomeScreenState extends State<HomeScreen> {
       AppLocalizations.of(context)!.subscriptions,
       AppLocalizations.of(context)!.services,
       AppLocalizations.of(context)!.pricingPlans,
-      AppLocalizations.of(context)!.discounts,
-      AppLocalizations.of(context)!.invoices,
       AppLocalizations.of(context)!.contacts,
       AppLocalizations.of(context)!.staff,
     ];
@@ -145,7 +141,7 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             ),
           ),
-          
+
           Padding(
             padding: const EdgeInsets.all(24.0),
             child: BlocProvider(
@@ -153,11 +149,16 @@ class _HomeScreenState extends State<HomeScreen> {
               child: BlocConsumer<SignoutViewModel, SignoutState>(
                 listener: (context, state) {
                   if (state.signoutState?.data != null) {
-                    Navigator.pushReplacementNamed(context, Routes.signinScreen);
+                    Navigator.pushReplacementNamed(
+                      context,
+                      Routes.signinScreen,
+                    );
                   }
                   if (state.signoutState?.errorMessage != null) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text(state.signoutState!.errorMessage!)),
+                      SnackBar(
+                        content: Text(state.signoutState!.errorMessage!),
+                      ),
                     );
                   }
                 },

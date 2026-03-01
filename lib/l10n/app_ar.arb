@@ -215,5 +215,13 @@
   "editProfile" : "تعديل الملف الشخصي",
   "@editProfile" :{},
   "id" : "الرقم التعريفي",
-  "@id" :{}
+  "@id" :{},
+  "session" : "الجلسة",
+  "@session" :{},
+  "startTime" : "وقت البدء",
+  "@startTime" :{},
+  "endTime" : "وقت الانتهاء",
+  "@endTime" :{},
+  "areYouSure"  : "هل أنت متأكد؟",
+  "@areYouSure" : {}
 }

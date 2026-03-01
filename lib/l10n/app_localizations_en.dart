@@ -320,4 +320,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get id => 'ID';
+
+  @override
+  String get session => 'Session';
+
+  @override
+  String get startTime => 'Start Time';
+
+  @override
+  String get endTime => 'End Time';
+
+  @override
+  String get areYouSure => 'Are you sure?';
 }

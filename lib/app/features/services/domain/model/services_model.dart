@@ -1,3 +1,5 @@
+import 'package:pilates_dashboard/app/features/sessions/domain/model/sessions_model.dart';
+
 class ServicesModel {
   String? message;
   List<ServiceEntity>? services;
@@ -22,6 +24,7 @@ class ServiceEntity {
   String? currency;
   bool? isVisible;
   int? index;
+  List<SessionEntity>? sessions;
 
   ServiceEntity({
     this.id,
@@ -33,6 +36,7 @@ class ServiceEntity {
     this.currency,
     this.isVisible,
     this.index,
+    this.sessions,
   });
 
   ServiceEntity copyWith({
@@ -45,6 +49,7 @@ class ServiceEntity {
     String? currency,
     bool? isVisible,
     int? index,
+    List<SessionEntity>? sessions,
   }) {
     return ServiceEntity(
       id: id ?? this.id,
@@ -56,6 +61,7 @@ class ServiceEntity {
       currency: currency ?? this.currency,
       isVisible: isVisible ?? this.isVisible,
       index: index ?? this.index,
+      sessions: sessions ?? this.sessions,
     );
   }
 }

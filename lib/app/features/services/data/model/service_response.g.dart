@@ -22,11 +22,14 @@ Service _$ServiceFromJson(Map<String, dynamic> json) => Service(
   createdAt: json['createdAt'] as String?,
   updatedAt: json['updatedAt'] as String?,
   name: json['name'] as String?,
-  imageUrl: json['imageUrl'] as String?,
+  imageUrl: json['imageUrl'],
   price: (json['price'] as num?)?.toInt(),
   currency: json['currency'] as String?,
   isVisible: json['isVisible'] as bool?,
   index: (json['index'] as num?)?.toInt(),
+  sessions: (json['sessions'] as List<dynamic>?)
+      ?.map((e) => SessionItem.fromJson(e as Map<String, dynamic>))
+      .toList(),
 );
 
 Map<String, dynamic> _$ServiceToJson(Service instance) => <String, dynamic>{
@@ -39,4 +42,5 @@ Map<String, dynamic> _$ServiceToJson(Service instance) => <String, dynamic>{
   'currency': instance.currency,
   'isVisible': instance.isVisible,
   'index': instance.index,
+  'sessions': instance.sessions,
 };

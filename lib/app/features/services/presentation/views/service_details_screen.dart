@@ -6,6 +6,8 @@ import 'package:pilates_dashboard/app/core/utils/app_locale.dart';
 import 'package:pilates_dashboard/app/features/services/domain/model/services_model.dart';
 import 'package:pilates_dashboard/app/features/services/presentation/view_model/services_state.dart';
 import 'package:pilates_dashboard/app/features/services/presentation/view_model/services_view_model.dart';
+import 'package:pilates_dashboard/app/features/sessions/presentation/view_model/sessions_view_model.dart';
+import 'package:pilates_dashboard/app/features/sessions/presentation/views/session_details_screen.dart';
 import 'package:pilates_dashboard/app/reusable_widgets/app_text_field.dart';
 import 'package:pilates_dashboard/l10n/app_localizations.dart';
 
@@ -50,12 +52,132 @@ class ServiceDetailsScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   _buildInfoCard(context, data),
-                  const SizedBox(height: 32),
+                  const SizedBox(height: 24),
+                  if (data.sessions != null &&
+                      (data.sessions?.isNotEmpty ?? false)) ...[
+                    Text(
+                      AppLocalizations.of(context)!.sessions,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    _buildSessionsList(context, data.sessions!),
+                    const SizedBox(height: 24),
+                  ],
                   _buildActionButtons(context, data),
                 ],
               ),
             );
           },
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSessionsList(BuildContext context, List sessions) {
+    final sessionsVm = getIt<SessionsViewModel>();
+    return Card(
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+        side: BorderSide(color: Colors.grey.shade200),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Column(
+          children: sessions.map<Widget>((s) {
+            final start = s.startTime ?? '';
+            final end = s.endTime ?? '';
+            final staff = s.staffName ?? '';
+            return ListTile(
+              title: Text(
+                staff.isNotEmpty
+                    ? staff
+                    : AppLocalizations.of(context)!.session,
+              ),
+              subtitle: Text('$start - $end'),
+              trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.edit, size: 18),
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) => SessionDetailsScreen(session: s),
+                        ),
+                      );
+                    },
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.delete_outline, size: 18),
+                    onPressed: () async {
+                      final confirm = await showDialog<bool>(
+                        context: context,
+                        builder: (_) => AlertDialog(
+                          title: Text(AppLocalizations.of(context)!.delete),
+                          content: Text(
+                            AppLocalizations.of(context)!.areYouSure,
+                          ),
+                          actions: [
+                            TextButton(
+                              onPressed: () => Navigator.pop(context, false),
+                              child: Text(AppLocale(context).cancle),
+                            ),
+                            TextButton(
+                              onPressed: () => Navigator.pop(context, true),
+                              child: Text(AppLocale(context).ok),
+                            ),
+                          ],
+                        ),
+                      );
+                      if (confirm == true) {
+                        final success = await sessionsVm.deleteSession(
+                          s.id ?? '',
+                        );
+                        if (success) {
+                          if (context.mounted) {
+                            showDialog(
+                              context: context,
+                              builder: (_) => AlertDialog(
+                                title: Text(
+                                  AppLocalizations.of(context)!.success,
+                                ),
+                                content: Text(
+                                  AppLocalizations.of(
+                                    context,
+                                  )!.deletedSuccessfully,
+                                ),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(context),
+                                    child: Text(AppLocale(context).ok),
+                                  ),
+                                ],
+                              ),
+                            );
+                          }
+                        } else {
+                          if (context.mounted)
+                            showDialog(
+                              context: context,
+                              builder: (_) => AlertDialog(
+                                title: Text(
+                                  AppLocalizations.of(context)!.error,
+                                ),
+                                content: const Text('Failed to delete'),
+                              ),
+                            );
+                        }
+                      }
+                    },
+                  ),
+                ],
+              ),
+            );
+          }).toList(),
         ),
       ),
     );
@@ -281,7 +403,9 @@ class ServiceDetailsScreen extends StatelessWidget {
                     _showStatusDialog(
                       context,
                       title: AppLocalizations.of(context)!.success,
-                      message: AppLocalizations.of(context)!.updatedSuccessfully,
+                      message: AppLocalizations.of(
+                        context,
+                      )!.updatedSuccessfully,
                       isSuccess: true,
                     );
                     // Refresh details
@@ -328,8 +452,10 @@ class ServiceDetailsScreen extends StatelessWidget {
       barrierDismissible: false,
       builder: (context) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        title: Text(title,
-            style: TextStyle(color: isSuccess ? Colors.green : Colors.red)),
+        title: Text(
+          title,
+          style: TextStyle(color: isSuccess ? Colors.green : Colors.red),
+        ),
         content: Text(message),
         actions: [
           TextButton(

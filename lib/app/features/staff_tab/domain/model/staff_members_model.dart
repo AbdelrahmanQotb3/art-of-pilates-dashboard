@@ -1,3 +1,5 @@
+import 'package:pilates_dashboard/app/features/sessions/domain/model/sessions_model.dart';
+
 class StaffMembersModel {
   String? message;
   List<StaffMemberEntity>? staffMembers;
@@ -24,6 +26,7 @@ class StaffMemberEntity {
   final bool? visibility;
   final int? index;
   final String? customAction;
+  final List<SessionEntity>? sessions;
 
   StaffMemberEntity({
     this.id,
@@ -34,6 +37,7 @@ class StaffMemberEntity {
     this.visibility,
     this.index,
     this.customAction,
+    this.sessions,
   });
 
   StaffMemberEntity copyWith({
@@ -45,6 +49,7 @@ class StaffMemberEntity {
     bool? visibility,
     int? index,
     String? customAction,
+    List<SessionEntity>? sessions,
   }) {
     return StaffMemberEntity(
       id: id ?? this.id,
@@ -55,6 +60,7 @@ class StaffMemberEntity {
       visibility: visibility ?? this.visibility,
       index: index ?? this.index,
       customAction: customAction ?? this.customAction,
+      sessions: sessions ?? this.sessions,
     );
   }
 }

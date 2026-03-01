@@ -321,4 +321,16 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get id => 'الرقم التعريفي';
+
+  @override
+  String get session => 'الجلسة';
+
+  @override
+  String get startTime => 'وقت البدء';
+
+  @override
+  String get endTime => 'وقت الانتهاء';
+
+  @override
+  String get areYouSure => 'هل أنت متأكد؟';
 }

@@ -8,6 +8,7 @@ import 'package:pilates_dashboard/app/features/staff_tab/data/model/staff_member
 import 'package:pilates_dashboard/app/features/staff_tab/data/model/update_staff_member_response.dart';
 import 'package:pilates_dashboard/app/features/staff_tab/domain/model/delete_staff_member_model.dart';
 import 'package:pilates_dashboard/app/features/staff_tab/domain/model/staff_members_model.dart';
+import 'package:pilates_dashboard/app/features/sessions/domain/model/sessions_model.dart';
 import 'package:pilates_dashboard/app/features/staff_tab/domain/repo/staff_members_repo_contract.dart';
 
 @Injectable(as: StaffMembersRepoContract)
@@ -19,7 +20,7 @@ class StaffMembersRepoImpl implements StaffMembersRepoContract {
   Future<BaseResponse<StaffMembersModel>> getStaffMembers() async {
     final response = await dataSource.getStaffMembers();
     switch (response) {
-      case SuccessResponse<StaffMemebersResponse>():
+      case SuccessResponse<StaffMembersResponse>():
         final List<StaffMemberEntity> members = response.data.staffMembers!.map(
           (memberDto) {
             return StaffMemberEntity(
@@ -31,12 +32,23 @@ class StaffMembersRepoImpl implements StaffMembersRepoContract {
               profilePic: memberDto.profilePic,
               visibility: memberDto.visibility,
               customAction: memberDto.customAction,
+              sessions: memberDto.sessions?.map((s) {
+                return SessionEntity(
+                  id: s.id,
+                  startTime: s.startTime,
+                  endTime: s.endTime,
+                  serviceId: s.serviceId,
+                  staffMemberId: s.staffMemberId,
+                  serviceName: s.service?.name,
+                  staffName: s.staffMember?.name,
+                );
+              }).toList(),
             );
           },
         ).toList();
         final model = StaffMembersModel(staffMembers: members);
         return SuccessResponse<StaffMembersModel>(data: model);
-      case ErrorResponse<StaffMemebersResponse>():
+      case ErrorResponse<StaffMembersResponse>():
         return ErrorResponse<StaffMembersModel>(error: response.error);
     }
   }
@@ -46,15 +58,29 @@ class StaffMembersRepoImpl implements StaffMembersRepoContract {
     final response = await dataSource.getStaffMember(id);
     switch (response) {
       case SuccessResponse<StaffMemberResponse>():
+        final staffDto = response.data.staffMember!;
         final StaffMemberEntity member = StaffMemberEntity(
-          id: response.data.staffMember!.id!,
-          name: response.data.staffMember!.name,
-          email: response.data.staffMember!.email,
-          index: response.data.staffMember!.index!,
-          phone: response.data.staffMember!.phone,
-          profilePic: response.data.staffMember!.profilePic,
-          visibility: response.data.staffMember!.visibility,
-          customAction: response.data.staffMember!.customAction,
+          id: staffDto.id!,
+          name: staffDto.name,
+          email: staffDto.email,
+          index: staffDto.index!,
+          phone: staffDto.phone,
+          profilePic: staffDto.profilePic,
+          visibility: staffDto.visibility,
+          customAction: staffDto.customAction,
+          sessions: staffDto.sessions
+              ?.map(
+                (s) => SessionEntity(
+                  id: s.id,
+                  startTime: s.startTime,
+                  endTime: s.endTime,
+                  serviceId: s.serviceId,
+                  staffMemberId: s.staffMemberId,
+                  serviceName: s.service?.name,
+                  staffName: s.staffMember?.name,
+                ),
+              )
+              .toList(),
         );
         return SuccessResponse<StaffMemberEntity>(data: member);
       case ErrorResponse<StaffMemberResponse>():
@@ -84,15 +110,29 @@ class StaffMembersRepoImpl implements StaffMembersRepoContract {
             error: Exception('Staff member response is null'),
           );
         }
+        final staffDto = response.data.staffMember!;
         final StaffMemberEntity member = StaffMemberEntity(
-          id: response.data.staffMember!.id,
-          name: response.data.staffMember!.name,
-          email: response.data.staffMember!.email,
-          index: response.data.staffMember!.index,
-          phone: response.data.staffMember!.phone,
-          profilePic: response.data.staffMember!.profilePic,
-          visibility: response.data.staffMember!.visibility,
-          customAction: response.data.staffMember!.customAction,
+          id: staffDto.id,
+          name: staffDto.name,
+          email: staffDto.email,
+          index: staffDto.index,
+          phone: staffDto.phone,
+          profilePic: staffDto.profilePic,
+          visibility: staffDto.visibility,
+          customAction: staffDto.customAction,
+          sessions: staffDto.sessions
+              ?.map(
+                (s) => SessionEntity(
+                  id: s.id,
+                  startTime: s.startTime,
+                  endTime: s.endTime,
+                  serviceId: s.serviceId,
+                  staffMemberId: s.staffMemberId,
+                  serviceName: s.service?.name,
+                  staffName: s.staffMember?.name,
+                ),
+              )
+              .toList(),
         );
         return SuccessResponse<StaffMemberEntity>(data: member);
       case ErrorResponse<AddStaffMemberResponse>():
@@ -125,23 +165,44 @@ class StaffMembersRepoImpl implements StaffMembersRepoContract {
     String? phone,
     String? customAction,
     bool? visibility,
-  ) async{
-    final response = await dataSource.updateStaffMember(index, name, email, phone, customAction, visibility);
+  ) async {
+    final response = await dataSource.updateStaffMember(
+      index,
+      name,
+      email,
+      phone,
+      customAction,
+      visibility,
+    );
     switch (response) {
       case SuccessResponse<UpdateStaffMemberResponse>():
+        final staffDto = response.data.staffMember;
         final StaffMemberEntity member = StaffMemberEntity(
-          id: response.data.staffMember.id,
-          name: response.data.staffMember.name,
-          email: response.data.staffMember.email,
-          index: response.data.staffMember.index,
-          phone: response.data.staffMember.phone,
-          profilePic: response.data.staffMember.profilePic,
-          visibility: response.data.staffMember.visibility,
-          customAction: response.data.staffMember.customAction,
+          id: staffDto.id,
+          name: staffDto.name,
+          email: staffDto.email,
+          index: staffDto.index,
+          phone: staffDto.phone,
+          profilePic: staffDto.profilePic,
+          visibility: staffDto.visibility,
+          customAction: staffDto.customAction,
+          sessions: staffDto.sessions
+              ?.map(
+                (s) => SessionEntity(
+                  id: s.id,
+                  startTime: s.startTime,
+                  endTime: s.endTime,
+                  serviceId: s.serviceId,
+                  staffMemberId: s.staffMemberId,
+                  serviceName: s.service?.name,
+                  staffName: s.staffMember?.name,
+                ),
+              )
+              .toList(),
         );
         return SuccessResponse<StaffMemberEntity>(data: member);
       case ErrorResponse<UpdateStaffMemberResponse>():
         return ErrorResponse<StaffMemberEntity>(error: response.error);
-  }
+    }
   }
 }

@@ -1,70 +1,59 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:pilates_dashboard/app/features/sessions/data/model/sessions_response.dart';
 
 part 'staff_members_response.g.dart';
 
 @JsonSerializable()
-class StaffMemebersResponse {
+class StaffMembersResponse {
   @JsonKey(name: 'Message')
-  final String? message;
-
+  String? message;
   @JsonKey(name: 'StaffMembers')
-  final List<StaffMember>? staffMembers;
+  List<StaffMember>? staffMembers;
 
-  StaffMemebersResponse({this.message, this.staffMembers});
+  StaffMembersResponse({this.message, this.staffMembers});
 
-  factory StaffMemebersResponse.fromJson(Map<String, dynamic> json) =>
-      _$StaffMemebersResponseFromJson(json);
-
-  Map<String, dynamic> toJson() => _$StaffMemebersResponseToJson(this);
+  factory StaffMembersResponse.fromJson(Map<String, dynamic> json) =>
+      _$StaffMembersResponseFromJson(json);
+  Map<String, dynamic> toJson() => _$StaffMembersResponseToJson(this);
 }
 
 @JsonSerializable()
 class StaffMember {
-  @JsonKey(name: 'id')
-  final String? id;
-
-  @JsonKey(name: 'createdAt')
-  final String? createdAt;
-
-  @JsonKey(name: 'updatedAt')
-  final String? updatedAt;
-
-  @JsonKey(name: 'name')
-  final String? name;
-
-  @JsonKey(name: 'email')
-  final String? email;
-
-  @JsonKey(name: 'phone')
-  final String? phone;
-
-  @JsonKey(name: 'profilePic')
-  final String? profilePic;
-
-  @JsonKey(name: 'visibility')
-  final bool? visibility;
-
-  @JsonKey(name: 'index')
-  final int? index;
-
-  @JsonKey(name: 'customAction')
-  final String? customAction;
+  String? id;
+  String? createdAt;
+  String? updatedAt;
+  dynamic? owner;
+  String? name;
+  dynamic? description;
+  String? email;
+  String? phone;
+  String? customAction;
+  dynamic? pageUrl;
+  dynamic? profilePic;
+  String? resourceId;
+  bool? visibility;
+  int? index;
+  List<SessionItem>? sessions;
 
   StaffMember({
     this.id,
     this.createdAt,
     this.updatedAt,
+    this.owner,
     this.name,
+    this.description,
     this.email,
     this.phone,
+    this.customAction,
+    this.pageUrl,
     this.profilePic,
+    this.resourceId,
     this.visibility,
     this.index,
-    this.customAction,
+    this.sessions,
   });
 
   factory StaffMember.fromJson(Map<String, dynamic> json) =>
       _$StaffMemberFromJson(json);
-
   Map<String, dynamic> toJson() => _$StaffMemberToJson(this);
 }

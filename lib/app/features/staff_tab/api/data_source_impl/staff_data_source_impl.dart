@@ -14,12 +14,12 @@ class StaffDataSourceImpl implements StaffDataSourceContract {
   StaffDataSourceImpl(this.apiClient);
 
   @override
-  Future<BaseResponse<StaffMemebersResponse>> getStaffMembers() async {
+  Future<BaseResponse<StaffMembersResponse>> getStaffMembers() async {
     try {
       final response = await apiClient.getStaffMembers();
-      return SuccessResponse<StaffMemebersResponse>(data: response);
+      return SuccessResponse<StaffMembersResponse>(data: response);
     } on Exception catch (e) {
-      return ErrorResponse<StaffMemebersResponse>(error: e);
+      return ErrorResponse<StaffMembersResponse>(error: e);
     }
   }
 

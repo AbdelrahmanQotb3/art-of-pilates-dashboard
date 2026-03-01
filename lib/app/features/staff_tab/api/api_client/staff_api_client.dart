@@ -16,7 +16,7 @@ abstract class StaffApiClient {
   factory StaffApiClient(Dio dio) = _StaffApiClient;
 
   @GET(EndPoints.getStaffMembers)
-  Future<StaffMemebersResponse> getStaffMembers();
+  Future<StaffMembersResponse> getStaffMembers();
 
   @GET(EndPoints.getStaffMember)
   Future<StaffMemberResponse> getStaffMember(@Query("index") int id);

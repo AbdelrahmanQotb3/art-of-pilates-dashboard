@@ -10,7 +10,7 @@ ServicesResponse _$ServicesResponseFromJson(Map<String, dynamic> json) =>
     ServicesResponse(
       message: json['Message'] as String?,
       services: (json['Services'] as List<dynamic>?)
-          ?.map((e) => Service.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => ServiceItem.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -20,7 +20,7 @@ Map<String, dynamic> _$ServicesResponseToJson(ServicesResponse instance) =>
       'Services': instance.services,
     };
 
-Service _$ServiceFromJson(Map<String, dynamic> json) => Service(
+ServiceItem _$ServiceItemFromJson(Map<String, dynamic> json) => ServiceItem(
   id: json['id'] as String?,
   createdAt: json['createdAt'] as String?,
   updatedAt: json['updatedAt'] as String?,
@@ -30,16 +30,21 @@ Service _$ServiceFromJson(Map<String, dynamic> json) => Service(
   currency: json['currency'] as String?,
   isVisible: json['isVisible'] as bool?,
   index: (json['index'] as num?)?.toInt(),
+  sessions: (json['sessions'] as List<dynamic>?)
+      ?.map((e) => SessionItem.fromJson(e as Map<String, dynamic>))
+      .toList(),
 );
 
-Map<String, dynamic> _$ServiceToJson(Service instance) => <String, dynamic>{
-  'id': instance.id,
-  'createdAt': instance.createdAt,
-  'updatedAt': instance.updatedAt,
-  'name': instance.name,
-  'imageUrl': instance.imageUrl,
-  'price': instance.price,
-  'currency': instance.currency,
-  'isVisible': instance.isVisible,
-  'index': instance.index,
-};
+Map<String, dynamic> _$ServiceItemToJson(ServiceItem instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'createdAt': instance.createdAt,
+      'updatedAt': instance.updatedAt,
+      'name': instance.name,
+      'imageUrl': instance.imageUrl,
+      'price': instance.price,
+      'currency': instance.currency,
+      'isVisible': instance.isVisible,
+      'index': instance.index,
+      'sessions': instance.sessions,
+    };

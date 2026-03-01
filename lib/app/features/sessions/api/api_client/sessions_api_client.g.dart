@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'staff_api_client.dart';
+part of 'sessions_api_client.dart';
 
 // dart format off
 
@@ -10,8 +10,8 @@ part of 'staff_api_client.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations,unused_element_parameter,avoid_unused_constructor_parameters,unreachable_from_main
 
-class _StaffApiClient implements StaffApiClient {
-  _StaffApiClient(this._dio, {this.baseUrl, this.errorLogger}) {
+class _SessionsApiClient implements SessionsApiClient {
+  _SessionsApiClient(this._dio, {this.baseUrl, this.errorLogger}) {
     baseUrl ??= 'http://localhost:3000/';
   }
 
@@ -22,25 +22,25 @@ class _StaffApiClient implements StaffApiClient {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<StaffMembersResponse> getStaffMembers() async {
+  Future<SessionsResponse> getSessions() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<StaffMembersResponse>(
+    final _options = _setStreamType<SessionsResponse>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'staff/getStaffMembers',
+            'sessions/getAllSessions',
             queryParameters: queryParameters,
             data: _data,
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late StaffMembersResponse _value;
+    late SessionsResponse _value;
     try {
-      _value = StaffMembersResponse.fromJson(_result.data!);
+      _value = SessionsResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
@@ -49,116 +49,56 @@ class _StaffApiClient implements StaffApiClient {
   }
 
   @override
-  Future<StaffMemberResponse> getStaffMember(int id) async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'index': id};
-    final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<StaffMemberResponse>(
-      Options(method: 'GET', headers: _headers, extra: _extra)
-          .compose(
-            _dio.options,
-            'staff/getStaffById',
-            queryParameters: queryParameters,
-            data: _data,
-          )
-          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
-    );
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late StaffMemberResponse _value;
-    try {
-      _value = StaffMemberResponse.fromJson(_result.data!);
-    } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options, response: _result);
-      rethrow;
-    }
-    return _value;
-  }
-
-  @override
-  Future<AddStaffMemberResponse> addStaffMember(
-    Map<String, dynamic> body,
-  ) async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(body);
-    final _options = _setStreamType<AddStaffMemberResponse>(
-      Options(method: 'POST', headers: _headers, extra: _extra)
-          .compose(
-            _dio.options,
-            'staff/addStaffMember',
-            queryParameters: queryParameters,
-            data: _data,
-          )
-          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
-    );
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late AddStaffMemberResponse _value;
-    try {
-      _value = AddStaffMemberResponse.fromJson(_result.data!);
-    } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options, response: _result);
-      rethrow;
-    }
-    return _value;
-  }
-
-  @override
-  Future<DeleteStaffMemberResponse> deleteStaffMember(
-    int index,
+  Future<UpdateSessionResponse> updateSession(
     String id,
-  ) async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'index': index, r'id': id};
-    final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<DeleteStaffMemberResponse>(
-      Options(method: 'DELETE', headers: _headers, extra: _extra)
-          .compose(
-            _dio.options,
-            'staff/deleteStaffMember',
-            queryParameters: queryParameters,
-            data: _data,
-          )
-          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
-    );
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late DeleteStaffMemberResponse _value;
-    try {
-      _value = DeleteStaffMemberResponse.fromJson(_result.data!);
-    } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options, response: _result);
-      rethrow;
-    }
-    return _value;
-  }
-
-  @override
-  Future<UpdateStaffMemberResponse> updateStaffMember(
-    int index,
     Map<String, dynamic> body,
   ) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'index': index};
+    final queryParameters = <String, dynamic>{r'id': id};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body);
-    final _options = _setStreamType<UpdateStaffMemberResponse>(
+    final _options = _setStreamType<UpdateSessionResponse>(
       Options(method: 'PATCH', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'staff/updateStaffMember',
+            'sessions/updateSession',
             queryParameters: queryParameters,
             data: _data,
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late UpdateStaffMemberResponse _value;
+    late UpdateSessionResponse _value;
     try {
-      _value = UpdateStaffMemberResponse.fromJson(_result.data!);
+      _value = UpdateSessionResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options, response: _result);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<DeleteSessionResponse> deleteSession(String id) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'id': id};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<DeleteSessionResponse>(
+      Options(method: 'DELETE', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            'sessions/deleteSession',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late DeleteSessionResponse _value;
+    try {
+      _value = DeleteSessionResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;

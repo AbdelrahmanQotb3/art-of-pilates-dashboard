@@ -6,7 +6,7 @@ import 'package:pilates_dashboard/app/features/staff_tab/data/model/staff_member
 import 'package:pilates_dashboard/app/features/staff_tab/data/model/update_staff_member_response.dart';
 
 abstract class StaffDataSourceContract {
-  Future<BaseResponse<StaffMemebersResponse>> getStaffMembers();
+  Future<BaseResponse<StaffMembersResponse>> getStaffMembers();
 
   Future<BaseResponse<StaffMemberResponse>> getStaffMember(int id);
 

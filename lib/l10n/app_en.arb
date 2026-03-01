@@ -205,5 +205,13 @@
   "editProfile" : "Edit Profile",
   "@editProfile" :{},
   "id" : "ID",
-  "@id" :{}
+  "@id" :{},
+  "session" : "Session",
+  "@session" :{},
+  "startTime" : "Start Time",
+  "@startTime" :{},
+  "endTime" : "End Time",
+  "@endTime" :{},
+  "areYouSure"  : "Are you sure?",
+  "@areYouSure" : {}
 }

@@ -37,4 +37,8 @@ class EndPoints {
 
   static const String currentUser = "user/currentUser";
   static const String editProfile = "user/editUser";
+
+  static const String getSessions = "sessions/getAllSessions";
+  static const String updateSession = "sessions/updateSession";
+  static const String deleteSession = "sessions/deleteSession";
 }

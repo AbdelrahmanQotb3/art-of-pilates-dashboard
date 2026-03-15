@@ -1,14 +1,12 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:pilates_dashboard/app/features/sessions/data/model/sessions_response.dart';
-
-part 'service_response.g.dart'; 
+part 'service_response.g.dart';
 
 @JsonSerializable()
 class ServiceResponse {
   @JsonKey(name: 'Message')
-  String? message;
+  final String? message;
   @JsonKey(name: 'Service')
-  Service? service;
+  final Service? service;
 
   ServiceResponse({this.message, this.service});
 
@@ -18,16 +16,24 @@ class ServiceResponse {
 
 @JsonSerializable()
 class Service {
-  String? id;
-  String? createdAt;
-  String? updatedAt;
-  String? name;
-  dynamic? imageUrl;
-  int? price;
-  String? currency;
-  bool? isVisible;
-  int? index;
-  List<SessionItem>? sessions;
+  final String? id;
+  final String? createdAt;
+  final String? updatedAt;
+  final String? name;
+  final String? imageUrl; 
+  final int? price;
+  final String? currency;
+  final bool? isVisible;
+  final int? index;
+  final String? bufferTime;
+  final String? paymentType;
+  final String? paymentPriceType;
+  final double? paymentAmount;
+  final String? paymentPref;
+  final String? location;
+  final String? bookingPolicy;
+  
+  final List<dynamic>? sessions; 
 
   Service({
     this.id,
@@ -39,6 +45,13 @@ class Service {
     this.currency,
     this.isVisible,
     this.index,
+    this.bufferTime,
+    this.paymentType,
+    this.paymentPriceType,
+    this.paymentAmount,
+    this.paymentPref,
+    this.location,
+    this.bookingPolicy,
     this.sessions,
   });
 

@@ -25,7 +25,7 @@ class SessionItem {
   final String? endTime;
   final String? serviceId;
   final String? staffMemberId;
-  final ServiceItem? service;
+  final Service? service;
   final StaffMember? staffMember;
 
   SessionItem({

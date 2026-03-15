@@ -7,8 +7,6 @@ import 'package:pilates_dashboard/app/features/auth/signout/presentation/view_mo
 import 'package:pilates_dashboard/app/features/auth/signout/presentation/view_model/signout_view_model.dart';
 import 'package:pilates_dashboard/app/features/classes/presentation/views/classes_tab.dart';
 import 'package:pilates_dashboard/app/features/contacts_tab/presentation/views/contacts_tab.dart';
-import 'package:pilates_dashboard/app/features/tabs/discounts_tab.dart';
-import 'package:pilates_dashboard/app/features/tabs/invoices_tab.dart';
 import 'package:pilates_dashboard/app/features/pricing_plans_tab/presentation/views/pricing_plans_tab.dart';
 import 'package:pilates_dashboard/app/features/services/presentation/views/services_tab.dart';
 import 'package:pilates_dashboard/app/features/sessions/presentation/views/sessions_tab.dart';

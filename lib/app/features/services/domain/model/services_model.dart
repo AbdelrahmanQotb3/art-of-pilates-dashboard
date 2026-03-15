@@ -15,53 +15,29 @@ class ServicesModel {
 }
 
 class ServiceEntity {
-  String? id;
-  String? createdAt;
-  String? updatedAt;
-  String? name;
-  String? imageUrl;
-  int? price;
-  String? currency;
-  bool? isVisible;
-  int? index;
-  List<SessionEntity>? sessions;
+  final String? id;
+  final String? createdAt;
+  final String? updatedAt;
+  final String? name;
+  final String? imageUrl;
+  final int? price;
+  final String? currency;
+  final bool? isVisible;
+  final int? index;
+  final String? bufferTime;
+  final String? paymentType;
+  final String? paymentPriceType;
+  final double? paymentAmount;
+  final String? paymentPref;
+  final String? location;
+  final String? bookingPolicy;
+  final List<SessionEntity>? sessions;
 
   ServiceEntity({
-    this.id,
-    this.createdAt,
-    this.updatedAt,
-    this.name,
-    this.imageUrl,
-    this.price,
-    this.currency,
-    this.isVisible,
-    this.index,
-    this.sessions,
+    this.id, this.createdAt, this.updatedAt, this.name,
+    this.imageUrl, this.price, this.currency, this.isVisible,
+    this.index, this.bufferTime, this.paymentType, this.paymentPriceType,
+    this.paymentAmount, this.paymentPref, this.location,
+    this.bookingPolicy, this.sessions,
   });
-
-  ServiceEntity copyWith({
-    String? id,
-    String? createdAt,
-    String? updatedAt,
-    String? name,
-    String? imageUrl,
-    int? price,
-    String? currency,
-    bool? isVisible,
-    int? index,
-    List<SessionEntity>? sessions,
-  }) {
-    return ServiceEntity(
-      id: id ?? this.id,
-      createdAt: createdAt ?? this.createdAt,
-      updatedAt: updatedAt ?? this.updatedAt,
-      name: name ?? this.name,
-      imageUrl: imageUrl ?? this.imageUrl,
-      price: price ?? this.price,
-      currency: currency ?? this.currency,
-      isVisible: isVisible ?? this.isVisible,
-      index: index ?? this.index,
-      sessions: sessions ?? this.sessions,
-    );
-  }
 }

@@ -12,6 +12,13 @@ abstract class ServicesRepoContract {
     String? imageUrl,
     bool? isVisible = true,
     int? index,
+    DateTime? bufferTime,
+    String? paymentType,
+    String? paymentPriceType,
+    double? paymentAmount,
+    String? paymentPref,
+    String? location,
+    String? bookingPolicy
   });
 
   Future<BaseResponse<DeleteServiceModel>> deleteService(String id);
@@ -24,5 +31,12 @@ abstract class ServicesRepoContract {
     String? imageUrl,
     bool? isVisible,
     int? index,
+    String? paymentType,
+    String? paymentPref,
+    String? bookingPolicy,
+    String? location,
+    String? paymentPriceType,
+    double? paymentAmount,
+    DateTime? bufferTime
   });
 }

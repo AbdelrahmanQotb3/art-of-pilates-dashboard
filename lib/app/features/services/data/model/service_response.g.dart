@@ -22,14 +22,19 @@ Service _$ServiceFromJson(Map<String, dynamic> json) => Service(
   createdAt: json['createdAt'] as String?,
   updatedAt: json['updatedAt'] as String?,
   name: json['name'] as String?,
-  imageUrl: json['imageUrl'],
+  imageUrl: json['imageUrl'] as String?,
   price: (json['price'] as num?)?.toInt(),
   currency: json['currency'] as String?,
   isVisible: json['isVisible'] as bool?,
   index: (json['index'] as num?)?.toInt(),
-  sessions: (json['sessions'] as List<dynamic>?)
-      ?.map((e) => SessionItem.fromJson(e as Map<String, dynamic>))
-      .toList(),
+  bufferTime: json['bufferTime'] as String?,
+  paymentType: json['paymentType'] as String?,
+  paymentPriceType: json['paymentPriceType'] as String?,
+  paymentAmount: (json['paymentAmount'] as num?)?.toDouble(),
+  paymentPref: json['paymentPref'] as String?,
+  location: json['location'] as String?,
+  bookingPolicy: json['bookingPolicy'] as String?,
+  sessions: json['sessions'] as List<dynamic>?,
 );
 
 Map<String, dynamic> _$ServiceToJson(Service instance) => <String, dynamic>{
@@ -42,5 +47,12 @@ Map<String, dynamic> _$ServiceToJson(Service instance) => <String, dynamic>{
   'currency': instance.currency,
   'isVisible': instance.isVisible,
   'index': instance.index,
+  'bufferTime': instance.bufferTime,
+  'paymentType': instance.paymentType,
+  'paymentPriceType': instance.paymentPriceType,
+  'paymentAmount': instance.paymentAmount,
+  'paymentPref': instance.paymentPref,
+  'location': instance.location,
+  'bookingPolicy': instance.bookingPolicy,
   'sessions': instance.sessions,
 };

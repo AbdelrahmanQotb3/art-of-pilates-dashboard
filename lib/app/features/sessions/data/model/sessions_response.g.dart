@@ -28,7 +28,7 @@ SessionItem _$SessionItemFromJson(Map<String, dynamic> json) => SessionItem(
   staffMemberId: json['staffMemberId'] as String?,
   service: json['service'] == null
       ? null
-      : ServiceItem.fromJson(json['service'] as Map<String, dynamic>),
+      : Service.fromJson(json['service'] as Map<String, dynamic>),
   staffMember: json['staffMember'] == null
       ? null
       : StaffMember.fromJson(json['staffMember'] as Map<String, dynamic>),

@@ -14,6 +14,13 @@ abstract class ServicesDataSourceContract {
     String? imageUrl,
     bool? visibility = true,
     int? index,
+    DateTime? bufferTime,
+    String? paymentType,
+    String? paymentPriceType,
+    double? paymentAmount,
+    String? paymentPref,
+    String? location,
+    String? bookingPolicy
   });
 
   Future<BaseResponse<DeleteServiceResponse>> deleteService(String id);
@@ -26,5 +33,13 @@ abstract class ServicesDataSourceContract {
     String? imageUrl,
     bool? visibility,
     int? index,
+    DateTime? bufferTime,
+    String? paymentType,
+    String? paymentPriceType,
+    double? paymentAmount,
+    String? paymentPref,
+    String? location,
+    String? bookingPolicy,
   });
+  
 }

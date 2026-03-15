@@ -22,6 +22,13 @@ class ServicesUseCase {
     String? imageUrl,
     bool? isVisible = true,
     int? index,
+    DateTime? bufferTime,
+    String? paymentType,
+    String? paymentPriceType,
+    double? paymentAmount,
+    String? paymentPref,
+    String? location,
+    String? bookingPolicy
   }) => servicesRepoContract.addService(
     name: name,
     price: price,
@@ -29,6 +36,13 @@ class ServicesUseCase {
     imageUrl: imageUrl,
     isVisible: isVisible,
     index: index,
+    bufferTime: bufferTime,
+    paymentType: paymentType,
+    paymentPriceType: paymentPriceType,
+    paymentAmount: paymentAmount,
+    paymentPref: paymentPref,
+    location: location,
+    bookingPolicy: bookingPolicy
   );
 
   Future<BaseResponse<DeleteServiceModel>> deleteService(String id) =>
@@ -42,6 +56,14 @@ class ServicesUseCase {
     String? imageUrl,
     bool? isVisible,
     int? index,
+    String? paymentType,
+    String? paymentPref,
+    String? bookingPolicy,
+    String? location,
+    String? paymentPriceType,
+    double? paymentAmount,
+    DateTime? bufferTime
+
   }) => servicesRepoContract.updateService(
     id: id,
     name: name,
@@ -50,5 +72,12 @@ class ServicesUseCase {
     imageUrl: imageUrl,
     isVisible: isVisible,
     index: index,
+    paymentType: paymentType,
+    paymentPref: paymentPref,
+    bookingPolicy: bookingPolicy,
+    location: location,
+    paymentPriceType: paymentPriceType,
+    paymentAmount: paymentAmount,
+    bufferTime: bufferTime
   );
 }
